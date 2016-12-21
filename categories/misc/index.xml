@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Truneski</title>
+    <link>https://truneski.github.io/categories/misc/index.xml</link>
+    <description>Recent content on Truneski</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://truneski.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://truneski.github.io/blog/2016/12/21/my-first-post/</link>
+      <pubDate>Wed, 21 Dec 2016 09:19:09 +0100</pubDate>
+      
+      <guid>https://truneski.github.io/blog/2016/12/21/my-first-post/</guid>
+      <description>
+
+&lt;p&gt;This is my first post on the site.  I hope that you like it!&lt;/p&gt;
+
+&lt;h2 id=&#34;welcome-function&#34;&gt;Welcome Function&lt;/h2&gt;
+
+&lt;p&gt;Here is a little Python function to welcome you:&lt;/p&gt;
+
+&lt;div class=&#34;highlight&#34; style=&#34;background: #111111&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #fb660a; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #ff0086; font-weight: bold&#34;&gt;hello_world&lt;/span&gt;&lt;span style=&#34;color: #ffffff&#34;&gt;():&lt;/span&gt;
+    &lt;span style=&#34;color: #fb660a; font-weight: bold&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color: #0086d2&#34;&gt;&amp;quot;Hello there!&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://truneski.github.io/blog/2016/12/20/about-me/</link>
+      <pubDate>Tue, 20 Dec 2016 07:11:56 +0100</pubDate>
+      
+      <guid>https://truneski.github.io/blog/2016/12/20/about-me/</guid>
+      <description>
+
+&lt;p&gt;Hello and welcome to my site!&lt;/p&gt;
+
+&lt;h2 id=&#34;a-bit-about-me&#34;&gt;A Bit About Me&lt;/h2&gt;
+
+&lt;p&gt;I like alpacas and I&amp;rsquo;m a fan of static sites.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/c/c4/Alpaka_33444.jpg&#34; alt=&#34;Great alpaca picture&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
