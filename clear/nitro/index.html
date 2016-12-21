@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>My First Post &middot; Trune</title>
+  <title>Nitro: A quick and simple profiler for Go &middot; Trune</title>
 
   
   <link rel="stylesheet" href="https://truneski.github.io/css/poole.css">
@@ -30,7 +30,7 @@
   
   
 
-  <meta name="description" content="Your default page description">
+  <meta name="description" content="Profiler for your Golang applications">
   <meta name="keywords" content="your,default,page,keywords">
   
 </head>
@@ -74,32 +74,34 @@
 
 <div class="content container">
   <div class="post">
-    <h1 class="post-title">My First Post</h1>
-    <span class="post-date">Dec 21, 2016 &middot; 1 minute read
-    
-    <br/>
-    <a class="label" href="https://truneski.github.io/categories/misc">misc</a>
-    </span>
+    <h1 class="post-title">Nitro: A quick and simple profiler for Go</h1>
     
 
-<p>This is my first post on the site.  I hope that you like it!</p>
+<h1 id="nitro">Nitro</h1>
 
-<h2 id="welcome-function">Welcome Function</h2>
+<p>Quick and easy performance analyzer library for <a href="http://golang.org/">Go</a>.</p>
 
-<p>Here is a little Python function to welcome you:</p>
+<h2 id="overview">Overview</h2>
 
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">hello_world</span><span style="color: #f8f8f2">():</span>
-    <span style="color: #66d9ef">print</span> <span style="color: #e6db74">&quot;Hello there!&quot;</span>
-</pre></div>
+<p>Nitro is a quick and easy performance analyzer library for Go.
+It is useful for comparing A/B against different drafts of functions
+or different functions.</p>
 
+<h2 id="implementing-nitro">Implementing Nitro</h2>
+
+<p>Using Nitro is simple. First, use <code>go get</code> to install the latest version
+of the library.</p>
+
+<pre><code> go get github.com/spf13/nitro
+</code></pre>
+
+<p>Next, include nitro in your application.</p>
+
+<pre><code> nitro heaven
+</code></pre>
 
   </div>
-  
 </div>
-
-
-
-
 
 </body>
 </html>

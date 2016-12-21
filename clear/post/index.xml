@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Truneski</title>
-    <link>https://truneski.github.io/categories/misc/index.xml</link>
-    <description>Recent content on Truneski</description>
+    <title>Post-rsses on Truneski</title>
+    <link>https://truneski.github.io/post/index.xml</link>
+    <description>Recent content in Post-rsses on Truneski</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://truneski.github.io/categories/misc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Dec 2016 09:19:09 +0100</lastBuildDate>
+    <atom:link href="https://truneski.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>My First Post</title>
@@ -22,10 +23,20 @@
 
 &lt;p&gt;Here is a little Python function to welcome you:&lt;/p&gt;
 
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;hello_world&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;():&lt;/span&gt;
-    &lt;span style=&#34;color: #66d9ef&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;Hello there!&amp;quot;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #111111&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #fb660a; font-weight: bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color: #ff0086; font-weight: bold&#34;&gt;hello_world&lt;/span&gt;&lt;span style=&#34;color: #ffffff&#34;&gt;():&lt;/span&gt;
+    &lt;span style=&#34;color: #fb660a; font-weight: bold&#34;&gt;print&lt;/span&gt; &lt;span style=&#34;color: #0086d2&#34;&gt;&amp;quot;Hello there!&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
+</description>
+    </item>
+    
+    <item>
+      <title>good to great</title>
+      <link>https://truneski.github.io/blog/2016/12/20/good-to-great/</link>
+      <pubDate>Tue, 20 Dec 2016 09:15:20 +0100</pubDate>
+      
+      <guid>https://truneski.github.io/blog/2016/12/20/good-to-great/</guid>
+      <description>&lt;p&gt;I read &lt;strong&gt;Good to Great in January 2016&lt;/strong&gt;. An awesome read sharing detailed analysis on how good companies became great.&lt;/p&gt;
 </description>
     </item>
     
