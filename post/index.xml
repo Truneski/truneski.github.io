@@ -70,20 +70,20 @@ dropbox account. A status file and a command file each with a unique identifier 
 &lt;p&gt;From the server you can direct the client to perform and run various commands.
 Here&amp;rsquo;s a video of what that looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=srddn2BBKIQ&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/srddn2BBKIQ/0.jpg&#34; alt=&#34;DBC2-Powershell-Run-cmds&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=srddn2BBKIQ&#34;&gt;&lt;img src=&#34;https://img.youtube.com/vi/srddn2BBKIQ/0.jpg&#34; alt=&#34;DBC2-Powershell-Run-cmds&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;launching-processes&#34;&gt;Launching Processes&lt;/h1&gt;
 
 &lt;p&gt;From the server side you can have the agent launch processes. In this case we&amp;rsquo;ll be launching notepad and chrome.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=xi9E8f6ybc4&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/xi9E8f6ybc4/0.jpg&#34; alt=&#34;DBC2-LauncProcesses&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=xi9E8f6ybc4&#34;&gt;&lt;img src=&#34;https://img.youtube.com/vi/xi9E8f6ybc4/0.jpg&#34; alt=&#34;DBC2-LauncProcesses&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;file-transfers&#34;&gt;File Transfers&lt;/h1&gt;
 
 &lt;p&gt;The script can transfer files from the controller to the server and vice versa.
 The short video shows how to send a file from the controller to the agent:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=azdi8yJmrRM&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/azdi8yJmrRM/0.jpg&#34; alt=&#34;Send File&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=azdi8yJmrRM&#34;&gt;&lt;img src=&#34;https://img.youtube.com/vi/azdi8yJmrRM/0.jpg&#34; alt=&#34;Send File&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;using-powershell-modules&#34;&gt;Using Powershell Modules&lt;/h1&gt;
 
@@ -92,7 +92,7 @@ It still has a few kinks which I am currently working to fix but for now can exe
 and return output just fine. In the video below we will use PowerDump to dump local password hashes
 from the local system. Here&amp;rsquo;s a video of what that looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=7U7Vs7xVQGc&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/7U7Vs7xVQGc/0.jpg&#34; alt=&#34;DBC2-PSmodules&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=7U7Vs7xVQGc&#34;&gt;&lt;img src=&#34;https://img.youtube.com/vi/7U7Vs7xVQGc/0.jpg&#34; alt=&#34;DBC2-PSmodules&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;persistence&#34;&gt;Persistence&lt;/h1&gt;
 
@@ -100,7 +100,7 @@ from the local system. Here&amp;rsquo;s a video of what that looks like:&lt;/p&g
 DBC2-Powershell uses a malicious registry runkey for persistence which downloads and executes our published agent
 whenever a user logs on. The video below shows how the persistnce technique works:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=-kUAJ4-rfdA&#34;&gt;&lt;img src=&#34;http://img.youtube.com/vi/-kUAJ4-rfdA/0.jpg&#34; alt=&#34;DBC@-Persistence&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=-kUAJ4-rfdA&#34;&gt;&lt;img src=&#34;https://img.youtube.com/vi/-kUAJ4-rfdA/0.jpg&#34; alt=&#34;DBC@-Persistence&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;future-work&#34;&gt;Future Work&lt;/h1&gt;
 
