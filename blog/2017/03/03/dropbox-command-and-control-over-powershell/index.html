@@ -99,17 +99,17 @@
 <p>Consider a scenario where a Pentester is trying to set up command and control on an internal network blocking all outbound traffic,
 except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation,
 there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control
-over file sharing sites such as Dropbox and Google docs. In this article we will explore how dropbox can be used for
+over file sharing sites such as Dropbox and Google docs. In this blogpost we will explore how dropbox can be used for
 such operations and more.</p>
 
 <p>In case you&rsquo;re unfamiliar with this concept, it involves using DropBox as a platform for command and control
 since dropbox is a legitimate website for storing files and documents. This concept makes it incredibly hard for users
 to immediately suspect and report malicious  activities on their systems, therefore making C2 over DropBox highly effective.</p>
 
-<p>DropBox-C2(DBC2) by <a href="https://twitter.com/arno0x0x">@Arno0x0x</a> is the best example I&rsquo;ve come across for such a working example. It supports running commands,
+<p><a href="https://github.com/Arno0x/DBC2">DropBox-C2(DBC2)</a> by <a href="https://twitter.com/arno0x0x">@Arno0x0x</a> is the best example I&rsquo;ve come across for such a working example. It supports running commands,
 shellMode for a more interactive feel, launching processes, Persistence, Data Exfiltration and running Custom Powershell modules.
-The last feature I was really excited about because it gives testers many possibilities incliding running their own
-custom Powershell scripts. The agent is written in C-Sharp and the server is written in Python.</p>
+The last feature I was really excited about because it gives testers many possibilities including running their own
+custom Powershell scripts in Memory without touching disk. The agent is written in C-Sharp and the server is written in Python.</p>
 
 <p>After a week and a half, I managed to implement some features of the DBC2 agent in a Powershell client available here.
 I have been teaching myself Powershell over the last month and thought I&rsquo;d take on this challenge to further
