@@ -97,7 +97,7 @@
     
 
 <p>Consider a scenario where a Pentester is trying to set up command and control on an internal network blocking all outbound traffic,
-except traffic towards a few specific servers or 3rd party applications the tester has to. In this situation,
+except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation,
 there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control
 over file sharing sites such as Dropbox and Google docs. In this article we will explore how dropbox can be used for
 such operations and more.</p>
@@ -109,7 +109,7 @@ to immediately suspect and report malicious  activities on their systems, theref
 <p>DropBox-C2(DBC2) by <a href="https://twitter.com/arno0x0x">@Arno0x0x</a> is the best example I&rsquo;ve come across for such a working example. It supports running commands,
 shellMode for a more interactive feel, launching processes, Persistence, Data Exfiltration and running Custom Powershell modules.
 The last feature I was really excited about because it gives testers many possibilities incliding running their own
-custom Powershell scripts. The agent is written in C-Sharp and the server is wriiten in Python.</p>
+custom Powershell scripts. The agent is written in C-Sharp and the server is written in Python.</p>
 
 <p>After a week and a half, I managed to implement some features of the DBC2 agent in a Powershell client available here.
 I have been teaching myself Powershell over the last month and thought I&rsquo;d take on this challenge to further
@@ -149,23 +149,20 @@ dropbox account. A status file and a command file each with a unique identifier 
 <p>From the server you can direct the client to perform and run various commands.
 Here&rsquo;s a video of what that looks like:</p>
 
-<pre><code>video1
-</code></pre>
+<p><a href="http://www.youtube.com/watch?v=srddn2BBKIQ"><img src="http://img.youtube.com/vi/srddn2BBKIQ/0.jpg" alt="DBC2-Powershell-Run-cmds" /></a></p>
 
 <h1 id="launching-processes">Launching Processes</h1>
 
 <p>From the server side you can have the agent launch processes. In this case we&rsquo;ll be launching notepad and chrome.</p>
 
-<pre><code>video2
-</code></pre>
+<p><a href="http://www.youtube.com/watch?v=xi9E8f6ybc4"><img src="http://img.youtube.com/vi/xi9E8f6ybc4/0.jpg" alt="DBC2-LauncProcesses" /></a></p>
 
 <h1 id="file-transfers">File Transfers</h1>
 
 <p>The script can transfer files from the controller to the server and vice versa.
 The short video shows how to send a file from the controller to the agent:</p>
 
-<pre><code>video 3
-</code></pre>
+<p><a href="http://www.youtube.com/watch?v=azdi8yJmrRM"><img src="http://img.youtube.com/vi/azdi8yJmrRM/0.jpg" alt="Send File" /></a></p>
 
 <h1 id="using-powershell-modules">Using Powershell Modules</h1>
 
@@ -174,8 +171,7 @@ It still has a few kinks which I am currently working to fix but for now can exe
 and return output just fine. In the video below we will use PowerDump to dump local password hashes
 from the local system. Here&rsquo;s a video of what that looks like:</p>
 
-<pre><code>video 4
-</code></pre>
+<p><a href="http://www.youtube.com/watch?v=7U7Vs7xVQGc"><img src="http://img.youtube.com/vi/7U7Vs7xVQGc/0.jpg" alt="DBC2-PSmodules" /></a></p>
 
 <h1 id="persistence">Persistence</h1>
 
@@ -183,8 +179,7 @@ from the local system. Here&rsquo;s a video of what that looks like:</p>
 DBC2-Powershell uses a malicious registry runkey for persistence which downloads and executes our published agent
 whenever a user logs on. The video below shows how the persistnce technique works:</p>
 
-<pre><code>video 5
-</code></pre>
+<p><a href="http://www.youtube.com/watch?v=-kUAJ4-rfdA"><img src="http://img.youtube.com/vi/-kUAJ4-rfdA/0.jpg" alt="DBC@-Persistence" /></a></p>
 
 <h1 id="future-work">Future Work</h1>
 
