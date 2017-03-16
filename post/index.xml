@@ -106,7 +106,8 @@ It&amp;rsquo;s definitely on the to-do list :). I&amp;rsquo;ll be devoting a few
 &lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
 
 &lt;p&gt;Command and control over DropBox has awesome practical advantages. If you doubt the power of such a technique you only need to read the awesome report by Cyber-X code named &lt;a href=&#34;https://cyberx-labs.com/en/blog/operation-bugdrop-cyberx-discovers-large-scale-cyber-reconnaissance-operation/&#34;&gt;Operation BugDrop&lt;/a&gt;
-That report only fueled me more to release an early version even if incomplete.
+That report only fueled me more to release an early version of this proof of concept even if incomplete.
+The project can be found at &lt;a href=&#34;https://github.com/Truneski/Invoke-DBC2&#34;&gt;Invoke-DBC2&lt;/a&gt;
 Penetration Testers can now use DBC2-Powershell alongside the usual familiar and common PowerShell tools.&lt;/p&gt;
 </description>
     </item>
