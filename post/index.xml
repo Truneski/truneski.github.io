@@ -28,9 +28,9 @@ Persistence, Data Exfiltration and running Custom Powershell modules.&lt;/p&gt;
 &lt;p&gt;The last feature I was really excited about because it gives testers many possibilities including running their
 own custom Powershell scripts in Memory without touching disk. The agent is written in C-Sharp and the server is written in Python.&lt;/p&gt;
 
-&lt;p&gt;After a week and a half, I managed to implement some features of the DBC2 agent in a Powershell agent available here. I have been teaching myself Powershell over the last month and thought I&amp;rsquo;d take on this challenge to further my knowledge of Powershell since it’s quite common among APTs and Penetration Testers.
-This is due to its versatility, many features and that it’s inbuilt in Windows systems.
-In this blog post we&amp;rsquo;ll look at how DBC2-Powershell script can be used&lt;/p&gt;
+&lt;p&gt;After a week and a half, I managed to implement some features of the DBC2 agent in Powershell. I have been teaching myself Powershell over the last month and thought I&amp;rsquo;d take on this challenge to further my knowledge of Powershell since it’s quite common among APTs and Penetration Testers.
+This is due to its versatility, many features and the fact that it’s inbuilt in Windows systems.
+In this blog post we&amp;rsquo;ll look at how the DBC2-Powershell script can be used&lt;/p&gt;
 
 &lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
 
@@ -40,7 +40,7 @@ and I highly recommend it. Once you&amp;rsquo;ve setup the server and its ready,
 &lt;pre&gt;&lt;code&gt;python dropboxc2.py
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The server will then ask for your DropBox Access token and master password to encrypt all data between agent and server controller.
+&lt;p&gt;The server will then ask for your DropBox Access token and master password to encrypt all data between the agent and server controller.
 A windows machine with Powershell version 5.0 is required. The DBC2 script can be loaded by downloading the script and running it as shown:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;. .\Invoke-DBC2.ps1
@@ -51,7 +51,7 @@ A windows machine with Powershell version 5.0 is required. The DBC2 script can b
 &lt;pre&gt;&lt;code&gt;Invoke-DBC2
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Invoke-DropBox is the name of the Main function used in DBC2-Powershell. After its executed it will create two files on your Dropbox account. A status file and a command file each with a unique identifier based on each machine its run own.&lt;/p&gt;
+&lt;p&gt;Invoke-DropBox is the name of the Main function used in DBC2-Powershell. After its executed it will create two files on your Dropbox account. A status file and a command file each with a unique identifier based on each machine its run on.&lt;/p&gt;
 
 &lt;h1 id=&#34;executing-native-commands&#34;&gt;Executing Native Commands&lt;/h1&gt;
 
@@ -80,7 +80,7 @@ The short video shows how to send a file from the controller to the agent:&lt;/p
 &lt;h1 id=&#34;using-powershell-modules&#34;&gt;Using Powershell Modules&lt;/h1&gt;
 
 &lt;p&gt;DBC2-Powershell Agent has the ability to run custom Powershell and return the output to the server.
-It still has a few kinks which I am currently working to fix but for now can execute the scripts and return output just fine. In the video below we will use PowerDump to dump local password hashes from the local system. Here&amp;rsquo;s a video of what that looks like:&lt;/p&gt;
+It still has a few kinks which I am currently working to fix but for now it can execute the scripts and return output just fine. In the video below we will use PowerDump to dump local password hashes from the local system:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.youtube.com/watch?v=7U7Vs7xVQGc&#34;&gt;&lt;img src=&#34;https://img.youtube.com/vi/7U7Vs7xVQGc/0.jpg&#34; alt=&#34;DBC2-PSmodules&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -93,7 +93,7 @@ DBC2-Powershell uses a malicious registry runkey for persistence which downloads
 
 &lt;h1 id=&#34;future-work&#34;&gt;Future Work&lt;/h1&gt;
 
-&lt;p&gt;There is still a lot to do in this project.Due to my limited Python knowledge, I modified the controller code to suit my needs. For example manually setting thy master key and iv in the pollingThread file instead of the initial default config file to better understand how the crypto works.&lt;/p&gt;
+&lt;p&gt;There is still a lot to do in this project.Due to my limited Python knowledge, I modified the controller code to suit my needs. For example manually setting the master key and iv in the pollingThread file instead of the initial default config file to better understand how the crypto works.&lt;/p&gt;
 
 &lt;p&gt;There are also some features I&amp;rsquo;m yet to implement which are working well in the original DBC2 and they include fixing the shellmode which is functional but not yet ready to be fully demo’d, changing the polling time, setting the sleep time, better output from the custom PS modules.
 It&amp;rsquo;s definitely on the to-do list :). I&amp;rsquo;ll be devoting a few hours a week so that I can finally complete it. Any help is welcome.&lt;/p&gt;
@@ -102,8 +102,8 @@ It&amp;rsquo;s definitely on the to-do list :). I&amp;rsquo;ll be devoting a few
 
 &lt;p&gt;Command and control over DropBox has awesome practical advantages. If you doubt the power of such a technique you only need to read the awesome report by Cyber-X code named &lt;a href=&#34;https://cyberx-labs.com/en/blog/operation-bugdrop-cyberx-discovers-large-scale-cyber-reconnaissance-operation/&#34;&gt;Operation BugDrop&lt;/a&gt;
 That report only fueled me more to release an early version of this proof of concept even if incomplete.
-The project can be found at &lt;a href=&#34;https://github.com/Truneski/Invoke-DBC2&#34;&gt;Invoke-DBC2&lt;/a&gt;
-Penetration Testers can now use DBC2-Powershell alongside the usual familiar and common PowerShell tools.&lt;/p&gt;
+The project can be found at &lt;a href=&#34;https://github.com/Truneski/Invoke-DBC2&#34;&gt;Invoke-DBC2.&lt;/a&gt;
+Penetration Testers can now use DBC2-Powershell alongside familiar PowerShell tools.&lt;/p&gt;
 </description>
     </item>
     
