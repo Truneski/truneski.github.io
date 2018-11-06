@@ -95,7 +95,7 @@
 <p>After completing the OSCP, I wanted to really learn python and create a tool that would be useful to the InfoSec community.
 A while back, I saw a few awesome tools leveraging command and control for Cobaltstrike via the external c2 specification.
 Specifically, the <a href="https://rhinosecuritylabs.com/aws/hiding-cloudcobalt-strike-beacon-c2-using-amazon-apis/">post</a> from <a href="https://twitter.com/RhinoSecurity">Rhino Security Labs</a> caught my eye since it was built specifically for Cobaltstrike using the Externalc2 specification and most importantly it was made using python.
-I wanted to see if I can use dropbox using their APIs as malware command and control specifically by leveraging Cobaltstrike externalc2 specification.</p>
+I wanted to see if I can use Dropbox using their APIs as malware command and control specifically by leveraging Cobaltstrike&rsquo;s externalc2 specification.</p>
 
 <h1 id="dropbox-as-a-c2-channel-using-the-dropbox-apis">Dropbox as a C2 channel using the Dropbox APIs</h1>
 
@@ -119,7 +119,7 @@ This allows for reduction to zero, the number of malicious domains and servers r
 
 <p>Ever since its release there have been frameworks created by members of the InfoSec community, to act as wrappers for the externalc2 specification.
 The framework we will use in this post is Jonathon Echavarria’s (<a href="https://twitter.com/Und3rf10w">@Und3rf10w</a>)
-<a href="https://github.com/Und3rf10w/external_c2_framework">external_c2_framework</a> and with a ton of guidance from final one from <a href="https://github.com/RhinoSecurityLabs/external_c2_framework/">Rhino Labs github</a>
+<a href="https://github.com/Und3rf10w/external_c2_framework">external_c2_framework</a> and with a ton of guidance from final one from <a href="https://github.com/RhinoSecurityLabs/external_c2_framework/">Rhino Labs github</a>.
 This framework was chosen for two reasons:</p>
 
 <h4 id="1-python">1. Python</h4>
@@ -127,7 +127,7 @@ This framework was chosen for two reasons:</p>
 <p>Since I had taken time to study python over the past 4 weeks, I wanted to see if I can go BIG and try and implement it in python.
 The only functionality missing from Echavarria’s framework was multi-client support.
 As noted from the RhinoLabs the time of this article, the framework only supported one Beacon to one Team Server.
-I decided to closely follow the RhinoLabs blogpost as a guide, to expand this capability and enable for support multiple Beacons on the Team Server.</p>
+I decided to closely follow the RhinoLabs blogpost as a guide, to expand this capability and enable for support multiple Beacons on the Team Server and in creating this blopost too.</p>
 
 <h4 id="2-modularity">2. Modularity</h4>
 
@@ -163,7 +163,7 @@ Once executed, it will encode the output of the command and create a new file in
 
 <ol>
 <li>You need to distribute the API token to the beacon executable.</li>
-<li>Further, while we tackled the problem of multi-client beacon functionality it still lacks task sequencing, as per the RhinoLabs post. Without this the client can only receive one command and submit one response at a time.</li>
+<li>Further, while we tackled the problem of multi-client beacon functionality it still lacks task sequencing, as per the RhinoLabs post. Without this, the client can only receive one command and submit one response at a time.</li>
 <li>Be wary of API rate limiting from Dropbox. This should be taken into consideration when determining the number of clients per Team server and how many requests need to be taken into account per client and Team server.</li>
 </ol>
 
