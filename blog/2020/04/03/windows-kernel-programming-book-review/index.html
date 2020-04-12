@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
-  <link rel="stylesheet" href="https://quavwo.github.iocss/hyde-overrides.css">
+  <link rel="stylesheet" href="https://truneski.github.iocss/hyde-overrides.css">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
   
@@ -11,19 +11,19 @@
   <title>Windows Kernel Programming Book Review &middot; </title>
 
   
-  <link rel="stylesheet" href="https://quavwo.github.io/css/poole.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/hyde.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/poole-overrides.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/hyde-x.css">
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://quavwo.github.io/touch-icon-144-precomposed.png">
-  <link href="https://quavwo.github.io/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://truneski.github.io/touch-icon-144-precomposed.png">
+  <link href="https://truneski.github.io/favicon.png" rel="icon">
 
   
   
@@ -55,9 +55,9 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="https://quavwo.github.io/">Blog</a></li>
+      <li class="sidebar-nav-item"><a href="https://truneski.github.io/">Blog</a></li>
       
-      <li class="sidebar-nav-item"><a href="https://quavwo.github.io/post">Posts</a></li>
+      <li class="sidebar-nav-item"><a href="https://truneski.github.io/post">Posts</a></li>
       
     </ul>
 
@@ -77,7 +77,7 @@
 
     
 
-    <p>Copyright &copy; 2020 <a href="https://quavwo.github.io/license/">License</a><br/>
+    <p>Copyright &copy; 2020 <a href="https://truneski.github.io/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
 
   </div>
@@ -373,30 +373,30 @@ sc start zerodawn
 
 </code></pre>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/1.png" alt="ZeroDawn-Install.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/1.png" alt="ZeroDawn-Install.png" /></p>
 
 <p>We can see a sample run of the client and the options it offers:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/2.png" alt="ZeroDawn-ClientOptions.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/2.png" alt="ZeroDawn-ClientOptions.png" /></p>
 
 <p>Initially, we can see a copied cmd.exe can execute a command from a folder C:\Temp:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/3.png" alt="ZeroDawn-TempCMD.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/3.png" alt="ZeroDawn-TempCMD.png" /></p>
 
 <p>And then we add C:\Temp path to prevent execution from it.
 When we try to execute the cmd again from this folder, we get a sweet Access is Denied:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/4.png" alt="ZeroDawn-BlockedTempCMD.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/4.png" alt="ZeroDawn-BlockedTempCMD.png" /></p>
 
 <p>Similarly, we can add another folder.
 Execution of an executable is blocked from that folder too as shown below:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/5.png" alt="ZeroDawn-AddSysWow64.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/5.png" alt="ZeroDawn-AddSysWow64.png" /></p>
 
 <p>A file path can be removed or we can clear all paths.
 Clearing all paths is demonstrated below leading to both protected folders being unprotected:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/6.png" alt="ZeroDawn-ClearPaths.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/6.png" alt="ZeroDawn-ClearPaths.png" /></p>
 
 <h4 id="summary-a-name-subparagraph15-a">Summary <a name="subparagraph15"></a></h4>
 
@@ -549,32 +549,32 @@ By default, up to 10 registry keys are protected.</p>
 sc start RegistryProtector
 </code></pre>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/7.png" alt="RegistryProtector-Install.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/7.png" alt="RegistryProtector-Install.png" /></p>
 
 <p>The client called RP-Client application adds, removes or clears registry keys to protect by issuing correct DeviceIoControl calls.
 We can add a registry key to protect:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/8.png" alt="RegistryProtector-Addkey.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/8.png" alt="RegistryProtector-Addkey.png" /></p>
 
 <p>We try modifying the value of the registry key using regedit by adding a + to it:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/9.png" alt="RegistryProtector-ModKeyExample.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/9.png" alt="RegistryProtector-ModKeyExample.png" /></p>
 
 <p>We press OK and the operation is intercepted and blocked, even though in the GUI it looks like it worked:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/10.png" alt="RegistryProtector-DriverRescue.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/10.png" alt="RegistryProtector-DriverRescue.png" /></p>
 
 <p>After a refresh, we see the value of the registry key hasn’t changed one bit:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/11.png" alt="RegistryProtector-KeysNeverChange.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/11.png" alt="RegistryProtector-KeysNeverChange.png" /></p>
 
 <p>We can remove the protected registry key as shown:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/12.png" alt="RegistryProtector-KeyRemuvo.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/12.png" alt="RegistryProtector-KeyRemuvo.png" /></p>
 
 <p>We can add multiple registry keys and remove them using the clear function:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/13.png" alt="RegistryProtector-AddMultipleKeys.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/13.png" alt="RegistryProtector-AddMultipleKeys.png" /></p>
 
 <h4 id="summary-a-name-subparagraph19-a">Summary <a name="subparagraph19"></a></h4>
 
@@ -888,7 +888,7 @@ ExFreePoolWithTag(destNameBuffer, DRIVER_TAG);</code></pre></div>
 
 <p>We can install the driver using it&rsquo;s INF file and load the driver as shown:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/15.png" alt="Delprotect-Install-Load.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/15.png" alt="Delprotect-Install-Load.png" /></p>
 
 <h4 id="user-mode-client-1-manages-protected-executable-names-a-name-subparagraph23-a">User Mode Client #1 – Manages Protected Executable Names <a name="subparagraph23"></a></h4>
 
@@ -910,31 +910,31 @@ ProtectExeConfig.exe clear
 This client is called DeleteTest and it tests both methods.
 First, we can see the file being deleted from cmd.exe using the del command:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/16.png" alt="Delprotect-Cmd-DelTest.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/16.png" alt="Delprotect-Cmd-DelTest.png" /></p>
 
 <p>We then add cmd.exe using ProtectExeConfig to the monitored executable name list:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/17.png" alt="Delprotect-Cmd-Protect.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/17.png" alt="Delprotect-Cmd-Protect.png" /></p>
 
 <p>We can see it’s a file it backed up to the Recycle Bin when we try to delete it from cmd.exe:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/18.png" alt="Delprotect-Cmd-Test.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/18.png" alt="Delprotect-Cmd-Test.png" /></p>
 
 <p>Finally, we can add DeleteTest to test it if can detect deletions from other processes:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/19.png" alt="Delprotect-Add-DeleteTest.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/19.png" alt="Delprotect-Add-DeleteTest.png" /></p>
 
 <p>We can see the options DeleteTest offers:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/20.png" alt="Delprotect-DeleteTest-Options.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/20.png" alt="Delprotect-DeleteTest-Options.png" /></p>
 
 <p>And we can see testing of the <strong>Delete method via IRP_MJ_SET_INFORMATION with FileDispositionInformation</strong>:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/21.png" alt="Delprotect-DeleteTest-1.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/21.png" alt="Delprotect-DeleteTest-1.png" /></p>
 
 <p>And the second delete option via <strong>IRP_MJ_CREATE with the FILE_DELETE_ON_CLOSE flag</strong>:</p>
 
-<p><img src="https://quavwo.github.io/post/images/wkp/22.png" alt="Delprotect-DeleteTest-2.png" /></p>
+<p><img src="https://truneski.github.io/post/images/wkp/22.png" alt="Delprotect-DeleteTest-2.png" /></p>
 
 <h4 id="summary-a-name-subparagraph25-a">Summary <a name="subparagraph25"></a></h4>
 

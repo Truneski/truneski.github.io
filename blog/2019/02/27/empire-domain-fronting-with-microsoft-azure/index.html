@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
-  <link rel="stylesheet" href="https://quavwo.github.iocss/hyde-overrides.css">
+  <link rel="stylesheet" href="https://truneski.github.iocss/hyde-overrides.css">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
   
@@ -11,19 +11,19 @@
   <title>Empire Domain Fronting With Microsoft Azure &middot; </title>
 
   
-  <link rel="stylesheet" href="https://quavwo.github.io/css/poole.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/hyde.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/poole-overrides.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="https://quavwo.github.io/css/hyde-x.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://truneski.github.io/css/hyde-x.css">
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://quavwo.github.io/touch-icon-144-precomposed.png">
-  <link href="https://quavwo.github.io/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://truneski.github.io/touch-icon-144-precomposed.png">
+  <link href="https://truneski.github.io/favicon.png" rel="icon">
 
   
   
@@ -55,9 +55,9 @@
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="https://quavwo.github.io/">Blog</a></li>
+      <li class="sidebar-nav-item"><a href="https://truneski.github.io/">Blog</a></li>
       
-      <li class="sidebar-nav-item"><a href="https://quavwo.github.io/post">Posts</a></li>
+      <li class="sidebar-nav-item"><a href="https://truneski.github.io/post">Posts</a></li>
       
     </ul>
 
@@ -77,7 +77,7 @@
 
     
 
-    <p>Copyright &copy; 2020 <a href="https://quavwo.github.io/license/">License</a><br/>
+    <p>Copyright &copy; 2020 <a href="https://truneski.github.io/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
 
   </div>
@@ -120,23 +120,23 @@
 
 <p>Setting up on Azure CDN is fairly straight forward and relatively painless. One just needs a little patience. The <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-overview">Azure documentation</a> on CDNs is amazing and this <a href="https://chigstuff.com/blog/metasploit-domain-fronting-with-microsoft-azure/">blog post</a> from <a href="https://twitter.com/ch1gg1ns">@ch1gg1ns</a> helped out a ton. We first Log in to the <a href="https://portal.azure.com/">Azure portal</a>. We enable Azure Content Delivery Network (CDN) by creating a new CDN profile and CDN endpoint. In the upper left, select Create a resource.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/create-resource.png" alt="create-resource.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/create-resource.png" alt="create-resource.png" /></p>
 
 <p>We then select Web and then CDN.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/web-cdn.png" alt="web-cdn.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/web-cdn.png" alt="web-cdn.png" /></p>
 
 <p>The CDN profile pane, we can then create a CDN resource and create an endpoint for that resource.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/success2.png" alt="success2.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/success2.png" alt="success2.png" /></p>
 
 <p>After we’ve successfully created it we will get this notification.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/success.png" alt="success.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/success.png" alt="success.png" /></p>
 
 <p>This is where the patience part comes in. After creating the CDN and the endpoint, we have to wait around 90 minutes for the endpoint to propagate throughout the CDN. We update the endpoint’s caching settings so that our CDN won’t cache our traffic like the usual CDN behavior. This enables us to use this as a communications channel. Change your caching behavior and query string caching behavior to bypass and we’re done.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/cache2.png" alt="cache2.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/cache2.png" alt="cache2.png" /></p>
 
 <p>Before moving on we need to explain a few things.</p>
 
@@ -176,19 +176,19 @@ root@kali:~# curl -k --header &quot;Host: darthmalicious.azureedge.net&quot; &qu
 
 <p>This is also relatively simple. We set the Listener Host option to our Azure front domain (watcocdn1.azureedge.net in our case) and we then add a custom header in our DefaultProfile that points to our CDN endpoint name (darthmalicious.azureedge.net). Example listener configuration is shown.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/empire-listener.png" alt="empire-listener.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/empire-listener.png" alt="empire-listener.png" /></p>
 
 <p>We can then start the Listener.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/starting-empire.png" alt="starting-empire.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/starting-empire.png" alt="starting-empire.png" /></p>
 
 <p>We launch an Empire stager, we can see that Azure’s Front Domain is used as the C2 domain.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/stager.png" alt="stager.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/stager.png" alt="stager.png" /></p>
 
 <p>Examining the traffic, we see the Host Header is used to redirect traffic to its intended destination.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/wireshark.png" alt="wireshark.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/wireshark.png" alt="wireshark.png" /></p>
 
 <h1 id="hardening-your-azure-domain-front">Hardening Your Azure Domain Front</h1>
 
@@ -198,17 +198,17 @@ root@kali:~# curl -k --header &quot;Host: darthmalicious.azureedge.net&quot; &qu
 
 <p>Visiting the <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine">Azure CDN Rules Engine documentation</a> we see it’s a feature of Azure CDN Premium from Verizon only. We create a CDN profile and endpoint name with this in mind. Once you create your CDN endpoint, it may take a few minutes to an hour to configure and propagate completely just as before.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/premium-verizon2.png" alt="premium-verizon2.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/premium-verizon2.png" alt="premium-verizon2.png" /></p>
 
 <h1 id="basic-redirection-rule-creation">Basic Redirection Rule Creation</h1>
 
 <p>While your CDN is running, open the profile page and click the Manage button.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/manage2.png" alt="manage2.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/manage2.png" alt="manage2.png" /></p>
 
 <p>We can then select “HTTP Large” &gt; Rules Engine and we get to this page.</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/cool-rules.png" alt="cool-rules.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/cool-rules.png" alt="cool-rules.png" /></p>
 
 <p>On this page, we can create conditions to match our desired rules. We’ll cover a rule to redirect based on User-Agent using the <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine-reference-match-conditions#request-header-regex">Request Header Regex</a>. If a User-Agent doesn’t match our specified User-Agent we redirect the traffic to <a href="https://twitter.com">Twitter</a>.</p>
 
@@ -216,7 +216,7 @@ root@kali:~# curl -k --header &quot;Host: darthmalicious.azureedge.net&quot; &qu
 
 <p>After creation we’ll get a warning: “Approval of new Rules takes up to 4 hours.”</p>
 
-<p><img src="https://quavwo.github.io/post/images/domain-fronting/rules3.png" alt="rules3.png" /></p>
+<p><img src="https://truneski.github.io/post/images/domain-fronting/rules3.png" alt="rules3.png" /></p>
 
 <p>If all goes well, our CDN rules should redirect any non-matching traffic to <a href="https://twitter.com">Twitter</a> and allow matching traffic through to our Empire Instance.</p>
 
