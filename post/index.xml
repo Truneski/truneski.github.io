@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>Windows Kernel Programming Book Review</title>
-      <link>https://truneski.github.io/blog/2020/04/03/windows-kernel-programming-book-review/</link>
+      <title>Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises</title>
+      <link>https://truneski.github.io/blog/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/</link>
       <pubDate>Fri, 03 Apr 2020 08:02:14 +0100</pubDate>
       
-      <guid>https://truneski.github.io/blog/2020/04/03/windows-kernel-programming-book-review/</guid>
+      <guid>https://truneski.github.io/blog/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/</guid>
       <description>Table of contents  Introduction High Level Overview  Chapter 1: Windows Internals Overview Chapter 2: Getting Started with Kernel Development Chapter 3: Kernel Programming Basics Chapter 4: Driver from Start to Finish Chapter 5: Debugging Chapter 6: Kernel Mechanisms Chapter 7: The I/O Request Packet Chapter 8: Process and Thread Notifications Chapter 9: Object and Registry Notifications Chapter 10: Introduction to File System Mini-Filters Chapter 11: Miscellaneous Topics  A word on Creating Drivers of Select Exercises</description>
     </item>
     
