@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises // Sic Parvis Magna.</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Truneski" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://truneski.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-89933497-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises"/>
+<meta name="twitter:description" content="Table of contents  Introduction High Level Overview  Chapter 1: Windows Internals Overview Chapter 2: Getting Started with Kernel Development Chapter 3: Kernel Programming Basics Chapter 4: Driver from Start to Finish Chapter 5: Debugging Chapter 6: Kernel Mechanisms Chapter 7: The I/O Request Packet Chapter 8: Process and Thread Notifications Chapter 9: Object and Registry Notifications Chapter 10: Introduction to File System Mini-Filters Chapter 11: Miscellaneous Topics  A word on Creating Drivers of Select Exercises"/>
+
+    <meta property="og:title" content="Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises" />
+<meta property="og:description" content="Table of contents  Introduction High Level Overview  Chapter 1: Windows Internals Overview Chapter 2: Getting Started with Kernel Development Chapter 3: Kernel Programming Basics Chapter 4: Driver from Start to Finish Chapter 5: Debugging Chapter 6: Kernel Mechanisms Chapter 7: The I/O Request Packet Chapter 8: Process and Thread Notifications Chapter 9: Object and Registry Notifications Chapter 10: Introduction to File System Mini-Filters Chapter 11: Miscellaneous Topics  A word on Creating Drivers of Select Exercises" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://truneski.github.io/post/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/" />
+<meta property="article:published_time" content="2020-04-03T08:02:14&#43;01:00"/>
+<meta property="article:modified_time" content="2020-04-03T08:02:14&#43;01:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://truneski.github.io/"><img class="app-header-avatar" src="https://truneski.github.io/post/images/avatar.png" alt="Truneski" /></a>
+      <h1>Sic Parvis Magna.</h1>
+      <p>@truneski. Gamer and an Infosec Enthusiast. Interested in Red Teaming and Low Level Things.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 3, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          22 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h1 id="table-of-contents">Table of contents</h1>
+
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#paragraph1">High Level Overview</a>
+
+<ol>
+<li><a href="#subparagraph1">Chapter 1: Windows Internals Overview</a></li>
+<li><a href="#subparagraph2">Chapter 2: Getting Started with Kernel Development</a></li>
+<li><a href="#subparagraph3">Chapter 3: Kernel Programming Basics</a></li>
+<li><a href="#subparagraph4">Chapter 4: Driver from Start to Finish</a></li>
+<li><a href="#subparagraph5">Chapter 5: Debugging</a></li>
+<li><a href="#subparagraph6">Chapter 6: Kernel Mechanisms</a></li>
+<li><a href="#subparagraph7">Chapter 7: The I/O Request Packet</a></li>
+<li><a href="#subparagraph8">Chapter 8: Process and Thread Notifications</a></li>
+<li><a href="#subparagraph9">Chapter 9: Object and Registry Notifications</a></li>
+<li><a href="#subparagraph10">Chapter 10: Introduction to File System Mini-Filters</a></li>
+<li><a href="#subparagraph11">Chapter 11: Miscellaneous Topics</a></li>
+</ol></li>
+
+<li><p><a href="#paragraph2">A word on Creating Drivers of Select Exercises</a></p></li>
+
+<li><p><a href="#paragraph6">Exercise 1: Create a driver that monitors process creation and allows a client application to configure executable paths that should not be allowed to execute.</a></p>
+
+<ol>
+<li><a href="#subparagraph12">Understanding Process Notifications</a></li>
+<li><a href="#subparagraph13">Setting up Process Create Notifications</a></li>
+<li><a href="#subparagraph14">User Mode Client</a></li>
+<li><a href="#subparagraph15">Summary</a></li>
+</ol></li>
+
+<li><p><a href="#paragraph7">Exercise 2: Implement a driver that protects a registry key from modifications. A client can send the driver registry keys to protect or unprotect.</a></p>
+
+<ol>
+<li><a href="#subparagraph16">Understanding Registry Notifications</a></li>
+<li><a href="#subparagraph17">Setting Up Registry Pre-Notifications</a></li>
+<li><a href="#subparagraph18">User Mode Client</a></li>
+<li><a href="#subparagraph19">Summary</a></li>
+</ol></li>
+
+<li><p><a href="#paragraph8">Exercise 3: Write a file system mini-filter that captures delete operations from cmd.exe and instead of deleting them, moves the files to the recycle bin</a></p>
+
+<ol>
+<li><a href="#subparagraph20">Understanding Processing I/O Operations and Pre-Operation Callbacks</a></li>
+<li><a href="#subparagraph21">Implementing Overall Filter Registration</a></li>
+<li><a href="#subparagraph22">Handling Pre-Operation Callbacks</a></li>
+<li><a href="#subparagraph23">User Mode Client #1 – Manages Protected Executable Names</a></li>
+<li><a href="#subparagraph24">User Mode Client #2 – Testing the Deletion Methods</a></li>
+<li><a href="#subparagraph25">Summary</a></li>
+</ol></li>
+
+<li><p><a href="#paragraph3">Conclusion</a></p></li>
+
+<li><p><a href="#paragraph4">Special Thanks</a></p></li>
+
+<li><p><a href="#paragraph5">References</a></p></li>
+</ol>
+
+<h2 id="introduction-a-name-introduction-a">Introduction <a name="introduction"></a></h2>
+
+<p>Windows Kernel Programming by <a href="https://twitter.com/zodiacon">Pavel Yosifovich @zodiacon</a> is an
+incredible and excellent technical book. My interest in kernel programming and development was
+ignited by the more recent and cool projects developed by the InfoSec community. The book in my
+opinion easily earns 9 out of 10 stars.</p>
+
+<p>I already had decent experience with user mode windows C++ development so jumping into this book
+was a no brainer for me. The author does a fantastic job of pacing the book and completely breaks down
+the explanations and code examples. Even through complex scenarios, the book excels in dissecting
+these concepts into step-by-step digestible pieces of information for complete beginners. The book is
+fairly cheap on <a href="https://leanpub.com/windowskernelprogramming">Leanpub</a> and the content is also
+worth the price. If you’re thinking of diving in you can take a look at the <a href="https://www.amazon.com/Windows-Kernel-Programming-Pavel-Yosifovich-ebook/product-
+reviews/B07TJT1GTF?reviewerType=all_reviews">Book Reviews on Amazon</a>.</p>
+
+<h2 id="high-level-overview-a-name-paragraph1-a">High Level Overview <a name="paragraph1"></a></h2>
+
+<h4 id="chapter-1-windows-internals-overview-a-name-subparagraph1-a">Chapter 1: Windows Internals Overview <a name="subparagraph1"></a></h4>
+
+<p>This chapter provides an overview of Windows Internals concepts that will be used throughout the book.
+These concepts are Virtual Memory, Threads, Processes. Services, Handles, Objects, System Services and General System Architecture.
+For a more better and thorough understanding of these concepts, the author has a <a href="https://www.pluralsight.com/courses/windows-internals">Windows Internals Course Series on PluralSight</a>.</p>
+
+<h4 id="chapter-2-getting-started-with-kernel-development-a-name-subparagraph2-a">Chapter 2: Getting Started with Kernel Development <a name="subparagraph2"></a></h4>
+
+<p>This chapter deals with the fundamentals of getting started with kernel development and setting up a driver development environment.
+I also wrote a minimalistic kernel driver to prove the driver development was set and ready to go for the coming sections.
+My development environment matched the setup described in this chapter. I faced no challenges setting up this environment.</p>
+
+<h4 id="chapter-3-kernel-programming-basics-a-name-subparagraph3-a">Chapter 3: Kernel Programming Basics <a name="subparagraph3"></a></h4>
+
+<p>This section digs deeper into kernel APIs, structures and definitions.
+Mechanisms that invoke code in a driver are introduced.
+General kernel programming guidelines were also introduced and covered.</p>
+
+<h4 id="chapter-4-driver-from-start-to-finish-a-name-subparagraph4-a">Chapter 4: Driver from Start to Finish <a name="subparagraph4"></a></h4>
+
+<p>Using all the knowledge from the previous chapters, this chapter walks you through writing your first functional windows driver.
+The driver includes a complete driver and client application.
+This driver demonstrated the powerful capabilities of running code in kernel mode as opposed to user mode.
+I won’t spoil the rest.</p>
+
+<h4 id="chapter-5-debugging-a-name-subparagraph5-a">Chapter 5: Debugging <a name="subparagraph5"></a></h4>
+
+<p>This section introduces kernel debugging of drivers and how to debug using the WinDbg debugger.
+It also covers Local and Full kernel debugging and the advantages and disadvantages of both.
+Setting up both debugging lab instances was particularly useful and nifty especially when dealing with my own bugs down the line.</p>
+
+<h4 id="chapter-6-kernel-mechanisms-a-name-subparagraph6-a">Chapter 6: Kernel Mechanisms <a name="subparagraph6"></a></h4>
+
+<p>Various mechanisms provided by the Windows Kernel are discussed in this chapter.
+Some are particularly useful when writing the drivers and others when debugging.
+These include but are not limited to Interrupt Request Level, Deferred Procedure Calls and Thread Synchronization.</p>
+
+<h4 id="chapter-7-the-i-o-request-packet-a-name-subparagraph7-a">Chapter 7: The I/O Request Packet <a name="subparagraph7"></a></h4>
+
+<p>The chapter deals with how a driver handles requests.
+These requests are packaged in the form of the I/O Request Packet (IRP) structure, which is semi-documented by Microsoft.
+Dispatch Routines, Accessing User Buffers and the I/O Stack Location are also introduced and covered.
+Finally, a driver to consolidate more of what was learned was put together.</p>
+
+<h4 id="chapter-8-process-and-thread-notifications-a-name-subparagraph8-a">Chapter 8: Process and Thread Notifications <a name="subparagraph8"></a></h4>
+
+<p>Kernel drivers have the ability to be notified when certain important events occur.
+This chapter covers such the events including process creation and destruction, thread creation and destruction and image loads.</p>
+
+<h4 id="chapter-9-object-and-registry-notifications-a-name-subparagraph9-a">Chapter 9: Object and Registry Notifications <a name="subparagraph9"></a></h4>
+
+<p>This section, covers the interception of certain types of operations.
+First, object notifications, where obtaining handles to some types of objects can be intercepted are explained.
+Second, how to intercept Registry Operations and control Registry Access.</p>
+
+<h4 id="chapter-10-introduction-to-file-system-mini-filters-a-name-subparagraph10-a">Chapter 10: Introduction to File System Mini-Filters <a name="subparagraph10"></a></h4>
+
+<p>This chapter deals with drivers that can intercept calls destined to the file system.
+This was the largest chapter in the book and it took some time to get through and understand most of the concepts.
+I’d also add this chapter needs a few re-reads to make all the concepts sink in and solidify.</p>
+
+<h4 id="chapter-11-miscellaneous-topics-a-name-subparagraph11-a">Chapter 11: Miscellaneous Topics <a name="subparagraph11"></a></h4>
+
+<p>Finally, this section contained various driver development techniques and other miscellaneous topics that didn’t fit well with the chapters so far.
+My favorite by far was Filter Drivers which could monitor other types of devices (not to be confused with File System Mini-Filters).</p>
+
+<h2 id="a-word-on-creating-drivers-of-select-exercises-a-name-paragraph2-a">A word on Creating Drivers of Select Exercises <a name="paragraph2"></a></h2>
+
+<p>I did a couple of the exercises the book offered to solidify my knowledge.
+I also decided to document three of them to show fellow beginners in kernel development what’s possible when dedication and commitment are applied when reading this book.
+By far these examples are far from perfect.
+Some possibly contain bugs but I did my best to put most of the code in a functional and working state.
+The next three sections cover these exercises.</p>
+
+<h2 id="exercise-1-create-a-driver-that-monitors-process-creation-and-allows-a-client-application-to-configure-executable-paths-that-should-not-be-allowed-to-execute-a-name-paragraph6-a">Exercise 1: Create a driver that monitors process creation and allows a client application to configure executable paths that should not be allowed to execute. <a name="paragraph6"></a></h2>
+
+<p>Drivers have the ability to be notified when certain important events occur.
+One of these events is Process Creation.
+This driver’s main purpose is to prevent executables located in configured file paths from executing.
+The Driver will keep a list of protected paths in a simple limited array.</p>
+
+<h4 id="understanding-process-notifications-a-name-subparagraph12-a">Understanding Process Notifications <a name="subparagraph12"></a></h4>
+
+<p>A driver can register for Process Creation and/or Process Exit notifications.
+We’ll mainly be dealing with process creation.
+Drivers have the power to stop a process from being created, returning an error to the caller initiating the process creation.
+The <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreateprocessnotifyroutineex">PsSetCreateProcessNotifyRoutineEx API</a> is used to register for process notifications. The syntax is as follows:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> NTSTATUS <span style="color:#a6e22e">PsSetCreateProcessNotifyRoutineEx</span>(
+   PCREATE_PROCESS_NOTIFY_ROUTINE_EX NotifyRoutine,
+   BOOLEAN                           Remove
+ );</code></pre></div>
+
+<p>The first argument is the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nc-ntddk-pcreate_process_notify_routine_ex">Driver’s callback Notify Routine</a> which has the following syntax:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> PCREATE_PROCESS_NOTIFY_ROUTINE_EX PcreateProcessNotifyRoutineEx;
+
+ <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">PcreateProcessNotifyRoutineEx</span>(
+   PEPROCESS Process,
+   HANDLE ProcessId,
+   PPS_CREATE_NOTIFY_INFO CreateInfo
+ )
+ {...}</code></pre></div>
+
+<p>The second argument indicates whether the driver is registering or unregistering the callback by means of a boolean.
+The API will be called with FALSE in its DriverEntry routine and called with TRUE in its unload routine.</p>
+
+<p>The first argument is a pointer to an EPROCESS structure that represents the process that’s newly created or exited.
+The second argument is ProcessID which is the Process ID of the process.
+The third argument is CreateInfo which is a pointer to a <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-
+_ps_create_notify_info">PS_CREATE_NOTIFY_INFO structure</a> that contains information about the new process. We can see how it’s defined:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _PS_CREATE_NOTIFY_INFO {
+   SIZE_T              Size;
+   <span style="color:#66d9ef">union</span> {
+     ULONG Flags;
+     <span style="color:#66d9ef">struct</span> {
+       ULONG FileOpenNameAvailable : <span style="color:#ae81ff">1</span>;
+       ULONG IsSubsystemProcess : <span style="color:#ae81ff">1</span>;
+       ULONG Reserved : <span style="color:#ae81ff">30</span>;
+     };
+   };
+   HANDLE              ParentProcessId;
+   CLIENT_ID           CreatingThreadId;
+   <span style="color:#66d9ef">struct</span> _FILE_OBJECT <span style="color:#f92672">*</span>FileObject;
+   PCUNICODE_STRING    ImageFileName;
+   PCUNICODE_STRING    CommandLine;
+   NTSTATUS            CreationStatus;
+ } PS_CREATE_NOTIFY_INFO, <span style="color:#f92672">*</span>PPS_CREATE_NOTIFY_INFO;</code></pre></div>
+
+<p>The important fields in the structure are:</p>
+
+<ul>
+<li><strong>CreatingThreadId</strong> - the process ID and thread ID of the process and thread that created the new process.</li>
+<li><strong>ParentProcessId</strong> - the process ID of the parent process for the new process.</li>
+<li><strong>ImageFileName</strong> - a pointer to a UNICODE_STRING string that holds the image filename of the executable, available if the flag FileOpenNameAvailable is set.</li>
+<li><strong>CommandLine</strong> - A pointer to a UNICODE_STRING string that holds the command that is used to execute the process. It may be NULL if it’s not available.</li>
+<li><strong>CreationStatus</strong> – is the NTSTATUS value to return for the process-creation operation. Drivers can change this value to an error code to prevent the process from being created.</li>
+</ul>
+
+<h4 id="setting-up-process-create-notifications-a-name-subparagraph13-a">Setting up Process Create Notifications <a name="subparagraph13"></a></h4>
+
+<p>In the DriverEntry we register for process notifications and this routine is called OnProcessNotify and can be found on the ZeroDawn.cpp file:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> status <span style="color:#f92672">=</span> PsSetCreateProcessNotifyRoutineEx(OnProcessNotify, FALSE);
+ <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status)) {
+ 	KdPrint((DRIVER_PREFIX <span style="color:#e6db74">&#34;failed to register process callback (0x%08X)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, status));
+	<span style="color:#66d9ef">break</span>;
+ }</code></pre></div>
+
+<p>Then we checkout the callback routine:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnProcessNotify</span>(PEPROCESS Process, HANDLE ProcessId, PPS_CREATE_NOTIFY_INFO CreateInfo) {
+	
+  UNREFERENCED_PARAMETER(Process);
+  UNREFERENCED_PARAMETER(ProcessId);
+
+  <span style="color:#66d9ef">if</span> (CreateInfo) {
+		
+    <span style="color:#66d9ef">if</span> (CreateInfo<span style="color:#f92672">-&gt;</span>FileOpenNameAvailable <span style="color:#f92672">&amp;&amp;</span> CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName)
+    {
+      KdPrint((<span style="color:#e6db74">&#34;ImageFilePath: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName));
+      AutoLock locker(DirNamesLock);
+      <span style="color:#66d9ef">if</span> (FindDirectory(CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName, true) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
+				
+        KdPrint((<span style="color:#e6db74">&#34;File not allowed to Execute: %ws</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName<span style="color:#f92672">-&gt;</span>Buffer));
+		CreateInfo<span style="color:#f92672">-&gt;</span>CreationStatus <span style="color:#f92672">=</span> STATUS_ACCESS_DENIED;
+      
+      }
+      <span style="color:#66d9ef">else</span> {
+		KdPrint((<span style="color:#e6db74">&#34;File Allowed to Execute: %ws</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName<span style="color:#f92672">-&gt;</span>Buffer));
+      }
+    }
+  }
+	
+  <span style="color:#75715e">// ProcessExit
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">else</span> {
+		
+  }
+
+}</code></pre></div>
+
+<p>The callback first checks if <strong>CreateInfo</strong> exists.
+It doesn’t exist for processes that are exiting.
+If it does exist, we then check for the <strong>ImageFileName</strong> using the <strong>FileOpenNameAvailable member</strong>.
+If the <strong>ImageFileName</strong> exists we can then acquire a mutex so our operations are protected.
+A helper function called <strong>FindDirectory</strong> is used to check if the ImageFileName is protected.
+If it’s part of the directory names protected, we <strong>block its creation</strong> by returning <strong>STATUS_ACCESS_DENIED</strong> via the <strong>CreationStatus</strong>.
+t’s not part of the protected list, it’s allowed to execute.</p>
+
+<h4 id="user-mode-client-a-name-subparagraph14-a">User Mode Client <a name="subparagraph14"></a></h4>
+
+<p>To configure which executable paths are blocked or unblocked, a user mode client that communicates with the driver was created.
+It allows you to add executable paths to a simple limited array, where these paths are kept in the kernel.
+For every process created, the driver gets an in-line notification.</p>
+
+<p>The driver examines its array and if the executable path is part of the protected list in the array it’s blocked.
+It’s not perfect, feel free to use the code and improve upon it.
+By default, up to 4 executable paths are protected.
+We can install the driver and then start it:</p>
+
+<pre><code>sc create zerodawn type= kernel binPath= C:\Code\ZeroDawn.sys
+
+sc start zerodawn
+
+</code></pre>
+
+<p><img src="https://truneski.github.io/post/images/wkp/1.png" alt="ZeroDawn-Install.png" /></p>
+
+<p>We can see a sample run of the client and the options it offers:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/2.png" alt="ZeroDawn-ClientOptions.png" /></p>
+
+<p>Initially, we can see a copied cmd.exe can execute a command from a folder C:\Temp:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/3.png" alt="ZeroDawn-TempCMD.png" /></p>
+
+<p>And then we add C:\Temp path to prevent execution from it.
+When we try to execute the cmd again from this folder, we get a sweet Access is Denied:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/4.png" alt="ZeroDawn-BlockedTempCMD.png" /></p>
+
+<p>Similarly, we can add another folder.
+Execution of an executable is blocked from that folder too as shown below:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/5.png" alt="ZeroDawn-AddSysWow64.png" /></p>
+
+<p>A file path can be removed or we can clear all paths.
+Clearing all paths is demonstrated below leading to both protected folders being unprotected:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/6.png" alt="ZeroDawn-ClearPaths.png" /></p>
+
+<h4 id="summary-a-name-subparagraph15-a">Summary <a name="subparagraph15"></a></h4>
+
+<p>This was an awesome exercise to learn more about Process Notifications and how to save data from
+user mode clients using simple limited arrays. There are far more superior ways of doing this but for
+purposes of this proof of concept it was amazing seeing this driver in action.
+The driver has a flaw in that its case insenstive.
+A method to overcome this is described well in the book.</p>
+
+<h2 id="exercise-2-implement-a-driver-that-protects-a-registry-key-from-modifications-a-client-can-send-the-driver-registry-keys-to-protect-or-unprotect-a-name-paragraph7-a">Exercise 2: Implement a driver that protects a registry key from modifications. A client can send the driver registry keys to protect or unprotect. <a name="paragraph7"></a></h2>
+
+<p>Kernel drivers have the ability to intercept certain operations.
+Object notifications are where obtaining handles to some types of objects can be intercepted e.g. process, thread and for Windows 10 – desktop.
+For Registry entries, the Configuration Manager (the part in the Executive that deals with the registry) can be used to register for notifications when registry keys are accessed.</p>
+
+<h4 id="understanding-process-notifications-a-name-subparagraph16-a">Understanding Process Notifications <a name="subparagraph16"></a></h4>
+
+<p>This exercise dealt with intercepting registry operations, specifically registry modifications.
+The API we used was <a href="https://docs.microsoft.com/en-us/windows-
+hardware/drivers/ddi/wdm/nf-wdm-cmregistercallbackex">CmRegisterCallbackEx</a> and we can see it’s prototype:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> NTSTATUS <span style="color:#a6e22e">CmRegisterCallbackEx</span>(
+   PEX_CALLBACK_FUNCTION Function,
+   PCUNICODE_STRING      Altitude,
+   PVOID                 Driver,
+   PVOID                 Context,
+   PLARGE_INTEGER        Cookie,
+   PVOID                 Reserved
+ );</code></pre></div>
+
+<p>It’s function is to register a <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nc-wdm-ex_callback_function">RegistryCallback Routine</a>.
+The Result of a successful registration is passed to the Cookie parameter.
+We can see the syntax for the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nc-wdm-ex_callback_function">RegistryCallback Routine</a>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> EX_CALLBACK_FUNCTION ExCallbackFunction;
+
+ NTSTATUS <span style="color:#a6e22e">ExCallbackFunction</span>(
+   PVOID CallbackContext,
+   PVOID Argument1,
+   PVOID Argument2
+ )
+ {...}</code></pre></div>
+
+<p>CallbackContext is the Context argument passed to <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-cmregistercallback">CmRegisterCallbackEx</a>.
+The first argument is in fact an enumeration, <strong>REG_NOTIFY_CLASS</strong>, describing the operation for which the callback is invoked, if it’s pre or post notification.
+The second argument is a pointer to a structure that contains information that is specific to the type of registry operation.</p>
+
+<p>To unregister a callback, <strong>CmUnRegisterCallback</strong> routine is called.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> NTSTATUS <span style="color:#a6e22e">CmUnRegisterCallback</span>(
+   LARGE_INTEGER Cookie
+ );</code></pre></div>
+
+<h4 id="setting-up-registry-pre-notifications-a-name-subparagraph17-a">Setting Up Registry Pre-Notifications <a name="subparagraph17"></a></h4>
+
+<p>The notification we are specifically interested in, per the <strong>REG_NOTIFY_CLASS</strong> enumeration is the <strong>RegNtPreSetValueKey</strong> Notification.
+The driver has several options of handling the callbacks before they are carried out by the Configuration Manager.
+The option we’ll use is to handle the request, check if our key is being modified in some way and return <strong>STATUS_CALLBACK_BYPASS</strong> from the callback.
+Now that we know what we need to do, we can implement the <strong>Registry Pre-Notification</strong>.
+In the driver’s <strong>DriverEntry</strong> we’ll add the registry callback registration.
+The <strong>returned cookie</strong> representing the registration is stored in our <strong>Globals</strong> structure:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> UNICODE_STRING altitude <span style="color:#f92672">=</span> RTL_CONSTANT_STRING(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;7657.124&#34;</span>);
+ status <span style="color:#f92672">=</span> CmRegisterCallbackEx(OnRegistryNotify, <span style="color:#f92672">&amp;</span>altitude, DriverObject, nullptr, <span style="color:#f92672">&amp;</span>g_Globals.RegCookie, nullptr);
+ <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status)) {
+	KdPrint((DRIVER_PREFIX <span style="color:#e6db74">&#34;failed to set registry callback (status=%08X)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, status));
+	<span style="color:#66d9ef">break</span>;
+ }</code></pre></div>
+
+<p>In the unload routine, we need to <strong>unregister the callback</strong>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DriverUnload</span>(_In_ PDRIVER_OBJECT DriverObject)
+ {
+ 	<span style="color:#75715e">// unregister callbacks
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">auto</span> status <span style="color:#f92672">=</span> CmUnRegisterCallback(g_Globals.RegCookie);
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status)) {
+		KdPrint((<span style="color:#e6db74">&#34;failed on CmUnRegisterCallback (0x%08X)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, status));
+	}
+
+ 	<span style="color:#75715e">// Snipped
+</span><span style="color:#75715e"></span>  }</code></pre></div>
+
+<p>Our Callback only cares about modifications done to certain registry keys.
+To do this, we have to make sure we switch onto the operation of interest i.e. <strong>RegNtPreSetValueKey Notification</strong>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> NTSTATUS <span style="color:#a6e22e">OnRegistryNotify</span>(PVOID, PVOID arg1, PVOID arg2) {
+
+	<span style="color:#66d9ef">auto</span> status <span style="color:#f92672">=</span> STATUS_SUCCESS;
+
+	<span style="color:#66d9ef">switch</span> ((REG_NOTIFY_CLASS)(ULONG_PTR)arg1) {
+	<span style="color:#66d9ef">case</span> RegNtPreSetValueKey: 
+	{}
+	<span style="color:#66d9ef">return</span> status;
+ 
+ }</code></pre></div>
+
+<p>Inside the case, we cast the second argument to the pre operation data and check if the operation succeeded and if it didn’t, we break:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">auto</span> preInfo <span style="color:#f92672">=</span> static_cast<span style="color:#f92672">&lt;</span>PREG_SET_VALUE_KEY_INFORMATION<span style="color:#f92672">&gt;</span>(arg2);
+ PCUNICODE_STRING keyName <span style="color:#f92672">=</span> nullptr;
+ <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(CmCallbackGetKeyObjectID(<span style="color:#f92672">&amp;</span>g_Globals.RegCookie, preInfo<span style="color:#f92672">-&gt;</span>Object, nullptr, <span style="color:#f92672">&amp;</span>keyName))) {
+	<span style="color:#66d9ef">break</span>;
+ }</code></pre></div>
+
+<p>Next, we acquire the FastMutex so that no other operations will interfere as we try to check if a registry is protected or not.
+The Registry Keys to protect, are received from the client and are stored in a Linked List.
+We enumerate over the Linked List using a for loop. We’ll extract the key name with <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-cmcallbackgetkeyobjectidex">CmCallbackGetKeyObjectIDEx</a>.
+For every key name, we’ll first convert it to Unicode string and then compare it using <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-
+rtlioencodememioresource">RtlInitUnicodeString</a>.
+If the compared Unicode key names are equal to each other, we block the modification and return <strong>STATUS_CALLBACK_BYPASS</strong>. For the unmatched keys, return <strong>STATUS_SUCCESS</strong>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> g_Globals.ItemCount; i<span style="color:#f92672">++</span>)
+ {
+ 	<span style="color:#66d9ef">auto</span> entry <span style="color:#f92672">=</span> RemoveHeadList(<span style="color:#f92672">&amp;</span>g_Globals.ItemsHead);
+	<span style="color:#66d9ef">auto</span> info <span style="color:#f92672">=</span> CONTAINING_RECORD(entry, FullItem<span style="color:#f92672">&lt;</span>RegKeyProtectInfo<span style="color:#f92672">*&gt;</span>, Entry);
+	<span style="color:#66d9ef">auto</span> kName <span style="color:#f92672">=</span> (WCHAR<span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>info<span style="color:#f92672">-&gt;</span>Data;
+
+	UNICODE_STRING tbcName;
+	RtlInitUnicodeString(<span style="color:#f92672">&amp;</span>tbcName, kName);
+
+	<span style="color:#66d9ef">if</span> (RtlCompareUnicodeString(keyName, <span style="color:#f92672">&amp;</span>tbcName, TRUE) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+	{
+		KdPrint((<span style="color:#e6db74">&#34;Found a Matching Protected key. Blocking Any Modification Attempts.&#34;</span>));
+		InsertTailList(<span style="color:#f92672">&amp;</span>g_Globals.ItemsHead, entry);
+		status <span style="color:#f92672">=</span> STATUS_CALLBACK_BYPASS;
+		<span style="color:#66d9ef">break</span>;
+	}
+	InsertTailList(<span style="color:#f92672">&amp;</span>g_Globals.ItemsHead, entry);
+	
+ }
+}
+}
+
+<span style="color:#66d9ef">return</span> status;
+}</code></pre></div>
+
+<h4 id="user-mode-client-a-name-subparagraph18-a">User Mode Client <a name="subparagraph18"></a></h4>
+
+<p>To configure which registry keys which are protected or unprotected a user mode client that communicates with the driver was created like in the previous exercise.
+It allows you to add registry keys to a <a href="https://docs.microsoft.com/en-us/windows/win32/api/ntdef/ns-ntdef-list_entry">doubly-linked list</a>.
+For every registry key, the driver gets an in-line notification.
+The driver examines this doubly linked list and if the executable registry key to be modified is part of this list, the modification is blocked. Otherwise, the other unprotected registry key operations are not interfered with.
+Much like the previous example, it&rsquo;s also not perfect.
+By default, up to 10 registry keys are protected.</p>
+
+<p>We can install and start the driver like in the previous exercise:</p>
+
+<pre><code>sc create RegistryProtector type= kernel binPath= C:\Code\RegistryProtector.sys
+
+sc start RegistryProtector
+</code></pre>
+
+<p><img src="https://truneski.github.io/post/images/wkp/7.png" alt="RegistryProtector-Install.png" /></p>
+
+<p>The client called RP-Client application adds, removes or clears registry keys to protect by issuing correct DeviceIoControl calls.
+We can add a registry key to protect:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/8.png" alt="RegistryProtector-Addkey.png" /></p>
+
+<p>We try modifying the value of the registry key using regedit by adding a + to it:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/9.png" alt="RegistryProtector-ModKeyExample.png" /></p>
+
+<p>We press OK and the operation is intercepted and blocked, even though in the GUI it looks like it worked:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/10.png" alt="RegistryProtector-DriverRescue.png" /></p>
+
+<p>After a refresh, we see the value of the registry key hasn’t changed one bit:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/11.png" alt="RegistryProtector-KeysNeverChange.png" /></p>
+
+<p>We can remove the protected registry key as shown:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/12.png" alt="RegistryProtector-KeyRemuvo.png" /></p>
+
+<p>We can add multiple registry keys and remove them using the clear function:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/13.png" alt="RegistryProtector-AddMultipleKeys.png" /></p>
+
+<h4 id="summary-a-name-subparagraph19-a">Summary <a name="subparagraph19"></a></h4>
+
+<p>This was a really nice challenge to learn more about Registry Pre-Notifications and how to incorporate
+Linked Lists into my code and how they handle data and overall workflow when managing such data from user mode clients.</p>
+
+<h2 id="exercise-3-write-a-file-system-mini-filter-that-captures-delete-operations-from-cmd-exe-and-instead-of-deleting-them-moves-the-files-to-the-recyclebin-a-name-paragraph8-a">Exercise 3: Write a file system mini-filter that captures delete operations from cmd.exe and instead of deleting them, moves the files to the RecycleBin. <a name="paragraph8"></a></h2>
+
+<p>File system filtering is the mechanism by which drivers can intercept calls destined to the file system.
+This is useful for software such as AVs and EDRs.
+In this driver, I extended it a bit and decided to add options to add more than one blacklisted executable name from which to intercept delete operations
+from other than just cmd.exe.
+The executable names are stored in a simple limited array.
+The maximum it can hold is around 32 names.</p>
+
+<h4 id="understanding-processing-i-o-operations-and-pre-operation-callbacks-a-name-subparagraph20-a">Understanding Processing I/O Operations and Pre-Operation Callbacks <a name="subparagraph20"></a></h4>
+
+<p>The main function of a file system mini-filter is processing I/O operations by implementing pre and/or post callbacks for the operations of interest.
+Pre operations allow a mini-filter to reject an operation completely.
+In this case <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/nc-fltkernel-pflt_pre_operation_callback">Pre-Operation Callbacks</a>
+are used to capture delete operations from cmd.exe and move the deleted files instead to the Recycle Bin.</p>
+
+<p>All Pre-Operation callbacks have the same prototype:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> PFLT_PRE_OPERATION_CALLBACK PfltPreOperationCallback;
+
+ FLT_PREOP_CALLBACK_STATUS <span style="color:#a6e22e">PfltPreOperationCallback</span>(
+   PFLT_CALLBACK_DATA Data,
+   PCFLT_RELATED_OBJECTS FltObjects,
+   PVOID <span style="color:#f92672">*</span>CompletionContext
+ )
+{...}</code></pre></div>
+
+<p>The first argument is Data is a pointer to the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/ns-fltkernel-_flt_callback_data">callback data (FLT_CALLBACK_DATA)</a> structure for the I/O operation.
+It provides all information related to the I/O itself.
+The <strong>FLT_CALLBACK_DATA structure</strong> is defined as shown:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _FLT_CALLBACK_DATA {
+   FLT_CALLBACK_DATA_FLAGS     Flags;
+   PETHREAD                    Thread;
+   PFLT_IO_PARAMETER_BLOCK     Iopb;
+   IO_STATUS_BLOCK             IoStatus;
+   <span style="color:#66d9ef">struct</span> _FLT_TAG_DATA_BUFFER <span style="color:#f92672">*</span>TagData;
+   <span style="color:#66d9ef">union</span> {
+     <span style="color:#66d9ef">struct</span> {
+       LIST_ENTRY QueueLinks;
+       PVOID      QueueContext[<span style="color:#ae81ff">2</span>];
+     };
+     PVOID FilterContext[<span style="color:#ae81ff">4</span>];
+   };
+   KPROCESSOR_MODE             RequestorMode;
+ } FLT_CALLBACK_DATA, <span style="color:#f92672">*</span>PFLT_CALLBACK_DATA;</code></pre></div>
+
+<p>The members of note are:</p>
+
+<ul>
+<li><strong>Flags</strong> may contain zero or a combination of flags.</li>
+<li><strong>Thread</strong> is an opaque pointer to the thread requesting this operation.</li>
+<li><strong>IoStatus</strong> is an <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_io_status_block">IO_STATUS_BLOCK structure</a> that contains status and information for the
+I/O operation.
+A mini-filter can modify the contents of this structure only in a <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/nc-fltkernel-pflt_pre_operation_callback">pre-operation callback (PFLT_PRE_OPERATION_CALLBACK)</a> routine from which it is about to return <strong>FLT_PREOP_COMPLETE</strong>.</li>
+<li><strong>RequestorMode</strong> indicates the execution mode of the process that initiated the I/O operation, either <strong>KernelMode</strong> or <strong>UserMode</strong>.</li>
+<li><strong>Iopb</strong> is a pointer to an <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/ns-fltkernel-_flt_io_parameter_block">FLT_IO_PARAMETER_BLOCK structure</a> that contains the
+detailed parameters for the I/O operation. It’s defined as shown:</li>
+</ul>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _FLT_IO_PARAMETER_BLOCK {
+   ULONG          IrpFlags;
+   UCHAR          MajorFunction;
+   UCHAR          MinorFunction;
+   UCHAR          OperationFlags;
+   UCHAR          Reserved;
+   PFILE_OBJECT   TargetFileObject;
+   PFLT_INSTANCE  TargetInstance;
+   FLT_PARAMETERS Parameters;
+ } FLT_IO_PARAMETER_BLOCK, <span style="color:#f92672">*</span>PFLT_IO_PARAMETER_BLOCK;</code></pre></div>
+
+<p>The notable members are:
++ <strong>TargetFileObject</strong>  which is the file object that is the target of this I/O operation.</p>
+
+<ul>
+<li><strong>Parameters</strong> is a <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/ns-fltkernel-_flt_parameters">FLT_PARAMETERS structure</a> that contains the parameters for the
+I/O operation that are specified by the <strong>MajorFunction</strong> and <strong>MinorFunction</strong> members.</li>
+</ul>
+
+<p>The second argument to the pre-callback is another structure of type <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/ns-fltkernel-_flt_related_objects">FLT_RELATED_OBJECTS</a>. It’s defined as shown:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _FLT_RELATED_OBJECTS {
+   USHORT        Size;
+   USHORT        TransactionContext;
+   PFLT_FILTER   Filter;
+   PFLT_VOLUME   Volume;
+   PFLT_INSTANCE Instance;
+   PFILE_OBJECT  FileObject;
+   PKTRANSACTION Transaction;
+ } FLT_RELATED_OBJECTS, <span style="color:#f92672">*</span>PFLT_RELATED_OBJECTS;</code></pre></div>
+
+<p>The <strong>FileObject</strong> field is the same one accessed through the <strong>I/O parameter block’s TargetFileObject</strong> Field.
+The third argument to the pre-callback is a context value that can be set by the driver.</p>
+
+<h4 id="implementing-overall-filter-registration-a-name-subparagraph21-a">Implementing Overall Filter Registration <a name="subparagraph21"></a></h4>
+
+<p>First, we need to register the operations callback.
+Our mini-filter driver must indicate which operations it’s interested in.
+This is done at registration time with an array of <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/ns-fltkernel-_flt_operation_registration">FLT_OPERATION_REGISTRATION structures</a>.
+We can see the definition:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> _FLT_OPERATION_REGISTRATION {
+   UCHAR                            MajorFunction;
+   FLT_OPERATION_REGISTRATION_FLAGS Flags;
+   PFLT_PRE_OPERATION_CALLBACK      PreOperation;
+   PFLT_POST_OPERATION_CALLBACK     PostOperation;
+   PVOID                            Reserved1;
+ } FLT_OPERATION_REGISTRATION, <span style="color:#f92672">*</span>PFLT_OPERATION_REGISTRATION;</code></pre></div>
+
+<p>We are interested in certain pre operations involving delete.
+Here’s the initialized array of <strong>FLT_OPERATION_REGISTRATION structures</strong> will be called Callbacks:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> CONST FLT_OPERATION_REGISTRATION Callbacks[] <span style="color:#f92672">=</span> {
+	{ IRP_MJ_CREATE, <span style="color:#ae81ff">0</span>, DelProtectPreCreate, nullptr },
+	{ IRP_MJ_SET_INFORMATION, <span style="color:#ae81ff">0</span>, DelProtectPreSetInformation, nullptr },
+	{ IRP_MJ_OPERATION_END }
+ };</code></pre></div>
+
+<p>Now that we’ve setup the array, the registration for the driver is shown below without any contexts:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> CONST FLT_REGISTRATION FilterRegistration <span style="color:#f92672">=</span> {
+
+	<span style="color:#66d9ef">sizeof</span>(FLT_REGISTRATION),
+	FLT_REGISTRATION_VERSION,
+	<span style="color:#ae81ff">0</span>,                       <span style="color:#75715e">//  Flags
+</span><span style="color:#75715e"></span>	nullptr,                 <span style="color:#75715e">//  Context
+</span><span style="color:#75715e"></span>	Callbacks,               <span style="color:#75715e">//  Operation callbacks
+</span><span style="color:#75715e"></span>	DelProtectUnload,                   <span style="color:#75715e">//  MiniFilterUnload
+</span><span style="color:#75715e"></span>	DelProtectInstanceSetup,            <span style="color:#75715e">//  InstanceSetup
+</span><span style="color:#75715e"></span>	DelProtectInstanceQueryTeardown,    <span style="color:#75715e">//  InstanceQueryTeardown
+</span><span style="color:#75715e"></span>	DelProtectInstanceTeardownStart,    <span style="color:#75715e">//  InstanceTeardownStart
+</span><span style="color:#75715e"></span>	DelProtectInstanceTeardownComplete, <span style="color:#75715e">//  InstanceTeardownComplete
+</span><span style="color:#75715e"></span>
+ };</code></pre></div>
+
+<p>With all that finished, all we need to do is to start filtering in the driver’s DriverEntry.
+A mini-filter driver must register itself as a mini-filter with the filter manager, specifying various settings, such as what operations it wishes to intercept.
+Having done the necessary initializations above, we can call <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/nf-fltkernel-fltregisterfilter">FltRegisterFilter</a> to register. Here’s its:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> NTSTATUS FLTAPI <span style="color:#a6e22e">FltRegisterFilter</span>(
+   PDRIVER_OBJECT         Driver,
+   <span style="color:#66d9ef">const</span> FLT_REGISTRATION <span style="color:#f92672">*</span>Registration,
+   PFLT_FILTER            <span style="color:#f92672">*</span>RetFilter
+ );</code></pre></div>
+
+<p>If successful, the driver can do further initializations as needed and finally call <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/nf-fltkernel-fltstartfiltering">FltStartFiltering</a> to actually start filtering operations.
+We can see the registration for our driver’s implementation:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> status <span style="color:#f92672">=</span> FltRegisterFilter(DriverObject, <span style="color:#f92672">&amp;</span>FilterRegistration, <span style="color:#f92672">&amp;</span>gFilterHandle);
+
+ FLT_ASSERT(NT_SUCCESS(status));
+ <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status))
+	<span style="color:#66d9ef">break</span>;</code></pre></div>
+
+<p>Then start filtering:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">status <span style="color:#f92672">=</span> FltStartFiltering(gFilterHandle);</code></pre></div>
+
+<h4 id="handling-pre-operation-callbacks-a-name-subparagraph22-a">Handling Pre-Operation Callbacks <a name="subparagraph22"></a></h4>
+
+<p>For this section, I’ll only cover handling PreSetInformation.
+All the callbacks have the same prototype:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> FLT_PREOP_CALLBACK_STATUS <span style="color:#a6e22e">DelProtectPreSetInformation</span>(PFLT_CALLBACK_DATA Data, PCFLT_RELATED_OBJECTS FltObjects, PVOID<span style="color:#f92672">*</span> CompletionContext) {
+	UNREFERENCED_PARAMETER(FltObjects);
+	UNREFERENCED_PARAMETER(CompletionContext);
+	UNREFERENCED_PARAMETER(FltObjects);</code></pre></div>
+
+<p>First, we’ll check if the operation is originating from kernel mode, and if so, just let it continue uninterrupted:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">if</span> (Data<span style="color:#f92672">-&gt;</span>RequestorMode <span style="color:#f92672">==</span> KernelMode)
+     <span style="color:#66d9ef">return</span> FLT_PREOP_SUCCESS_NO_CALLBACK;</code></pre></div>
+
+<p>Next, we need to check if this is a delete operation.
+This is done using the parameter’s union by accessing the correct structures.
+The <strong>FileDispositionInformation</strong> enumeration value indicates a delete operation.
+The <strong>FileDispositionInformationEx</strong> is similar and undocumented, but is used internally by the user mode DeleteFile function, so we check for both:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> params <span style="color:#f92672">=</span> Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>Parameters.SetFileInformation;
+
+ <span style="color:#66d9ef">if</span> (params.FileInformationClass <span style="color:#f92672">!=</span> FileDispositionInformation <span style="color:#f92672">&amp;&amp;</span> params.FileInformationClass <span style="color:#f92672">!=</span> FileDispositionInformationEx) {
+	<span style="color:#75715e">// not a delete operation
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> FLT_PREOP_SUCCESS_NO_CALLBACK;
+ }</code></pre></div>
+
+<p>If it is a delete operation, we check the information buffer which is of type <strong>FILE_DISPOSITION_INFORMATION</strong> for delete operations and checking the Boolean stored there:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">auto</span> info <span style="color:#f92672">=</span> (FILE_DISPOSITION_INFORMATION<span style="color:#f92672">*</span>)params.InfoBuffer;
+ <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>info<span style="color:#f92672">-&gt;</span>DeleteFile)
+      <span style="color:#66d9ef">return</span> FLT_PREOP_SUCCESS_NO_CALLBACK;</code></pre></div>
+
+<p>Finally, we are in a delete operation.
+We need to figure out from which process where the delete operation originated from i.e. check if it’s from a blacklisted executable name.
+We do this by combining <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-obopenobjectbypointer">ObOpenObjectByPointer</a> to get a handle to the process and then call
+<a href="https://docs.microsoft.com/en-us/windows/win32/procthread/zwqueryinformationprocess">ZwQueryInformationProcess</a> to query for the process’ image filename, and see if it’s from a blacklisted executable name:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">auto</span> process <span style="color:#f92672">=</span> PsGetThreadProcess(Data<span style="color:#f92672">-&gt;</span>Thread);
+ NT_ASSERT(process);
+
+ HANDLE hProcess;
+ <span style="color:#66d9ef">auto</span> status <span style="color:#f92672">=</span> ObOpenObjectByPointer(process, OBJ_KERNEL_HANDLE, nullptr, <span style="color:#ae81ff">0</span>, nullptr, KernelMode, <span style="color:#f92672">&amp;</span>hProcess);
+ <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status))
+ 	<span style="color:#66d9ef">return</span> FLT_PREOP_SUCCESS_NO_CALLBACK;
+
+ <span style="color:#66d9ef">auto</span> returnStatus <span style="color:#f92672">=</span> FLT_PREOP_SUCCESS_NO_CALLBACK;
+
+ <span style="color:#66d9ef">auto</span> size <span style="color:#f92672">=</span> <span style="color:#ae81ff">512</span>;	
+ <span style="color:#66d9ef">auto</span> processName <span style="color:#f92672">=</span> (UNICODE_STRING<span style="color:#f92672">*</span>)ExAllocatePool(PagedPool, size);
+ <span style="color:#66d9ef">if</span> (processName) {
+ 	RtlZeroMemory(processName, size);	<span style="color:#75715e">// ensure string will be NULL-terminated
+</span><span style="color:#75715e"></span>	status <span style="color:#f92672">=</span> ZwQueryInformationProcess(hProcess, ProcessImageFileName, processName, size <span style="color:#f92672">-</span> <span style="color:#66d9ef">sizeof</span>(WCHAR), nullptr);
+
+	<span style="color:#66d9ef">if</span> (NT_SUCCESS(status) <span style="color:#f92672">&amp;&amp;</span> processName<span style="color:#f92672">-&gt;</span>Length <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+		KdPrint((<span style="color:#e6db74">&#34;Delete operation from %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+		<span style="color:#66d9ef">auto</span> exeName <span style="color:#f92672">=</span> <span style="color:#f92672">::</span>wcsrchr(processName<span style="color:#f92672">-&gt;</span>Buffer, <span style="color:#e6db74">L</span><span style="color:#e6db74">&#39;\\&#39;</span>);</code></pre></div>
+
+<p>Next we call <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/nf-fltkernel-fltgetfilenameinformation">FltGetFileNameInformation API</a> that can return the correct file
+name information for the file being deleted with the assistance of <strong>FltParseFileNameInformation</strong>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">status <span style="color:#f92672">=</span> FltGetFileNameInformation(Data, FLT_FILE_NAME_QUERY_DEFAULT <span style="color:#f92672">|</span> FLT_FILE_NAME_NORMALIZED, <span style="color:#f92672">&amp;</span>nameInfo);
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status)) 
+	<span style="color:#66d9ef">return</span> FLT_PREOP_COMPLETE;
+
+status <span style="color:#f92672">=</span> FltParseFileNameInformation(nameInfo);
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status))
+	<span style="color:#66d9ef">return</span> FLT_PREOP_COMPLETE;</code></pre></div>
+
+<p>Next, we’ll need to get the DOS filename.
+First, we get the target file’s dos name. We’ll be using the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ioqueryfiledosdevicename">IoQueryFileDosDeviceName</a> which retrieves the <strong>MS-DOS device name</strong>.
+This device name is filled in on successful return from the <strong>IoQueryFileDosDeviceName</strong> call in the newly allocated <strong>OBJECT_NAME_INFORMATION structure</strong> pointed to by <strong>ObjectNameInformation</strong>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">POBJECT_NAME_INFORMATION ObjectNameInformation <span style="color:#f92672">=</span> nullptr;
+IoQueryFileDosDeviceName(Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject, <span style="color:#f92672">&amp;</span>ObjectNameInformation);
+KdPrint((<span style="color:#e6db74">&#34;Dos Letter Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name));</code></pre></div>
+
+<p>Then we allocate space for the name of the target filename:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">auto</span> dosName <span style="color:#f92672">=</span> ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name;
+<span style="color:#66d9ef">auto</span> NameLength <span style="color:#f92672">=</span> (USHORT)dosName.MaximumLength <span style="color:#f92672">+</span> Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject<span style="color:#f92672">-&gt;</span>FileName.MaximumLength <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+<span style="color:#66d9ef">auto</span> NameBuffer <span style="color:#f92672">=</span> ExAllocatePoolWithTag(PagedPool, NameLength, DRIVER_TAG);
+<span style="color:#66d9ef">if</span> (NameBuffer <span style="color:#f92672">==</span> nullptr) {
+	KdPrint((<span style="color:#e6db74">&#34;Failed to allocate memory</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> FLT_PREOP_COMPLETE;
+}
+
+UNICODE_STRING NameString;
+NameString.Length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+NameString.MaximumLength <span style="color:#f92672">=</span> (USHORT)NameLength;
+NameString.Buffer <span style="color:#f92672">=</span> (PWCH)NameBuffer;
+
+UNICODE_STRING symString <span style="color:#f92672">=</span> RTL_CONSTANT_STRING(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">??</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">&#34;</span>);
+RtlCopyUnicodeString(<span style="color:#f92672">&amp;</span>NameString, <span style="color:#f92672">&amp;</span>symString);
+
+RtlAppendUnicodeStringToString(<span style="color:#f92672">&amp;</span>NameString, <span style="color:#f92672">&amp;</span>ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name);
+KdPrint((<span style="color:#e6db74">&#34;Full Source Path Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>NameString))</code></pre></div>
+
+<p>Once, we get the target filename we’ll build the full destination name as it appears after the file has been transferred to the recycle bin:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Get DestinationFile DosName
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> destNameLength <span style="color:#f92672">=</span> (USHORT)dosName.MaximumLength <span style="color:#f92672">+</span> Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject<span style="color:#f92672">-&gt;</span>FileName.MaximumLength <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>; <span style="color:#75715e">//We&#39;ll add .bkup at the end of the file extension
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> destNameBuffer <span style="color:#f92672">=</span> ExAllocatePoolWithTag(PagedPool, destNameLength, DRIVER_TAG);
+<span style="color:#66d9ef">if</span> (destNameBuffer <span style="color:#f92672">==</span> nullptr) {
+	KdPrint((<span style="color:#e6db74">&#34;Failed to allocate memory</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>));
+	<span style="color:#66d9ef">return</span> FLT_PREOP_COMPLETE;
+}
+
+UNICODE_STRING destNameString;
+destNameString.Length <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+destNameString.MaximumLength <span style="color:#f92672">=</span> (USHORT)destNameLength;
+destNameString.Buffer <span style="color:#f92672">=</span> (PWCH)destNameBuffer;
+
+UNICODE_STRING binString <span style="color:#f92672">=</span> RTL_CONSTANT_STRING(<span style="color:#e6db74">L</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">??</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">C:</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">$RECYCLE.BIN</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">&#34;</span>);
+
+RtlCopyUnicodeString(<span style="color:#f92672">&amp;</span>destNameString, <span style="color:#f92672">&amp;</span>binString);
+RtlAppendUnicodeStringToString(<span style="color:#f92672">&amp;</span>destNameString, <span style="color:#f92672">&amp;</span>nameInfo<span style="color:#f92672">-&gt;</span>FinalComponent);
+
+KdPrint((<span style="color:#e6db74">&#34;Full Destination Recycle Path Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>destNameString));</code></pre></div>
+
+<p>Once we have both filenames, we can simply copy the file to the Recycle Bin.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">status <span style="color:#f92672">=</span> ntCopyFile(NameString, destNameString);
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status))
+{
+	KdPrint((<span style="color:#e6db74">&#34;ntCopyFile() failed:%x</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, status));
+}</code></pre></div>
+
+<p>Then we cleanup and free all the memory that we used:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">ExFreePool(ObjectNameInformation);
+ExFreePoolWithTag(NameBuffer, DRIVER_TAG);
+ExFreePoolWithTag(destNameBuffer, DRIVER_TAG);</code></pre></div>
+
+<p>We then let the file be deleted and complete the pre operation:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">		  Data<span style="color:#f92672">-&gt;</span>IoStatus.Status <span style="color:#f92672">=</span> STATUS_SUCCESS;
+		  returnStatus <span style="color:#f92672">=</span> FLT_PREOP_COMPLETE;
+	     }
+	}
+	ExFreePool(processName);
+    }
+    ZwClose(hProcess);
+
+    <span style="color:#66d9ef">return</span> returnStatus;
+}</code></pre></div>
+
+<p>We can install the driver using it&rsquo;s INF file and load the driver as shown:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/15.png" alt="Delprotect-Install-Load.png" /></p>
+
+<h4 id="user-mode-client-1-manages-protected-executable-names-a-name-subparagraph23-a">User Mode Client #1 – Manages Protected Executable Names <a name="subparagraph23"></a></h4>
+
+<p>This user mode client is used to add, remove or clear executable names that are monitored by the driver.
+The name for this client is ProtectExeConfig. I’m pretty sure you can come up with a better name.
+The commands to control it are below:</p>
+
+<pre><code>ProtectExeConfig.exe add DeleteTest.exe
+ProtectExeConfig.exe remove DeleteTest.exe
+ProtectExeConfig.exe clear
+</code></pre>
+
+<p>We&rsquo;ll see it&rsquo;s use in the next section.</p>
+
+<h4 id="user-mode-client-2-testing-the-deletion-methods-a-name-subparagraph24-a">User Mode Client #2 – Testing the Deletion Methods <a name="subparagraph24"></a></h4>
+
+<p>Internally, there are only two ways to delete a file - <strong>IRP_MJ_CREATE with the FILE_DELETE_ON_CLOSE flag</strong> and <strong>IRP_MJ_SET_INFORMATION with FileDispositionInformation</strong>.
+This client is called DeleteTest and it tests both methods.
+First, we can see the file being deleted from cmd.exe using the del command:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/16.png" alt="Delprotect-Cmd-DelTest.png" /></p>
+
+<p>We then add cmd.exe using ProtectExeConfig to the monitored executable name list:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/17.png" alt="Delprotect-Cmd-Protect.png" /></p>
+
+<p>We can see the file was backed up to the Recycle Bin when we attempted to delete it from cmd.exe:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/18.png" alt="Delprotect-Cmd-Test.png" /></p>
+
+<p>Finally, we can add DeleteTest to test it if can detect deletions from other processes:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/19.png" alt="Delprotect-Add-DeleteTest.png" /></p>
+
+<p>We can see the options DeleteTest offers:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/20.png" alt="Delprotect-DeleteTest-Options.png" /></p>
+
+<p>And we can see testing of the <strong>Delete method via IRP_MJ_SET_INFORMATION with FileDispositionInformation</strong>:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/21.png" alt="Delprotect-DeleteTest-1.png" /></p>
+
+<p>And the second delete option via <strong>IRP_MJ_CREATE with the FILE_DELETE_ON_CLOSE flag</strong>:</p>
+
+<p><img src="https://truneski.github.io/post/images/wkp/22.png" alt="Delprotect-DeleteTest-2.png" /></p>
+
+<h4 id="summary-a-name-subparagraph25-a">Summary <a name="subparagraph25"></a></h4>
+
+<p>This was the largest chapter and the most time-consuming chapter to complete and grasp.
+However, it was well worth it.
+Extending this driver beyond the exercise handed out by the book was an awesome and intense learning experience.</p>
+
+<h2 id="conclusion-a-name-paragraph3-a">Conclusion <a name="paragraph3"></a></h2>
+
+<p>The sections discussing the exercises are written mostly for people who’ve gone through the entire book and
+got stuck while doing the exercises or those who just want to compare their solutions to alternative ones.
+This post is just a teaser of what’s possible while operating in kernel mode.
+I seriously couldn’t recommend this book enough.</p>
+
+<p>The code for this blogpost can be found on my <a href="https://github.com/Truneski/WindowsKernelProgramming-Exercises">Github</a>.</p>
+
+<h2 id="special-thanks-a-name-paragraph4-a">Special Thanks <a name="paragraph4"></a></h2>
+
+<p>Special thanks to <a href="https://twitter.com/muntopia">MunirTheAlien</a>, <a href="https://twitter.com/TH3_GOAT_FARM3R">Szymon</a>, <a href="https://twitter.com/TheColonial">OJ</a> and <a href="https://twitter.com/_tweerie_">Tweerie</a> for reviewing my post and <a href="https://twitter.com/matterpreter">Matterpreter</a> for being super helpful and an inspiration.</p>
+
+<h2 id="references-a-name-paragraph5-a">References <a name="paragraph5"></a></h2>
+
+<ol>
+<li><a href="http://deniable.org/windows/windows-callbacks">http://deniable.org/windows/windows-callbacks</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights">https://docs.microsoft.com/en-us/windows/win32/procthread/process-security-and-access-rights</a></li>
+<li><a href="https://docs.microsoft.com/en-us/windows/win32/procthread/zwqueryinformationprocess">https://docs.microsoft.com/en-us/windows/win32/procthread/zwqueryinformationprocess</a></li>
+<li><a href="https://github.com/microsoft/Windows-driver-samples/">https://github.com/microsoft/Windows-driver-samples/</a></li>
+<li><a href="https://github.com/Fare9/Windows-Internals">https://github.com/Fare9/Windows-Internals</a></li>
+<li><a href="https://stackoverflow.com/questions/29796200/get-file-path-in-minifilter-driver">https://stackoverflow.com/questions/29796200/get-file-path-in-minifilter-driver</a></li>
+<li><a href="https://community.osr.com/discussion/84515/retrieving-full-pathname-from-handle">https://community.osr.com/discussion/84515/retrieving-full-pathname-from-handle</a></li>
+<li><a href="http://www.programmersought.com/article/7410162074/">http://www.programmersought.com/article/7410162074/</a></li>
+</ol>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

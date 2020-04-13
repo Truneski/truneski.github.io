@@ -13,46 +13,46 @@
     
     <item>
       <title>Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises</title>
-      <link>https://truneski.github.io/post/fifth-post/</link>
+      <link>https://truneski.github.io/post/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/</link>
       <pubDate>Fri, 03 Apr 2020 08:02:14 +0100</pubDate>
       
-      <guid>https://truneski.github.io/post/fifth-post/</guid>
+      <guid>https://truneski.github.io/post/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/</guid>
       <description>Table of contents  Introduction High Level Overview  Chapter 1: Windows Internals Overview Chapter 2: Getting Started with Kernel Development Chapter 3: Kernel Programming Basics Chapter 4: Driver from Start to Finish Chapter 5: Debugging Chapter 6: Kernel Mechanisms Chapter 7: The I/O Request Packet Chapter 8: Process and Thread Notifications Chapter 9: Object and Registry Notifications Chapter 10: Introduction to File System Mini-Filters Chapter 11: Miscellaneous Topics  A word on Creating Drivers of Select Exercises</description>
     </item>
     
     <item>
       <title>Pentester Academy Course Review - Attacking and Defending Active Directory</title>
-      <link>https://truneski.github.io/post/third-post/</link>
+      <link>https://truneski.github.io/post/2019/04/27/pentester-academy-course-review-attacking-and-defending-active-directory/</link>
       <pubDate>Sat, 27 Apr 2019 18:57:03 -0400</pubDate>
       
-      <guid>https://truneski.github.io/post/third-post/</guid>
+      <guid>https://truneski.github.io/post/2019/04/27/pentester-academy-course-review-attacking-and-defending-active-directory/</guid>
       <description>Introduction I recently had the pleasure of purchasing and successfully completing Pentester Academy’s Attacking and Defending Active Directory Course. The main objective of the course is to provide a high quality learning platform for security professionals to understand, analyze and practice threats and attacks in a modern Active Directory environment. The course author is Nikhil Mittal who is a seasoned AD penetration tester and researcher. The course’s overall approach is to teach how to perform a Red Team assessment with an assume breach mentality.</description>
     </item>
     
     <item>
       <title>Empire Domain Fronting With Microsoft Azure</title>
-      <link>https://truneski.github.io/post/second-post/</link>
+      <link>https://truneski.github.io/post/2019/02/27/empire-domain-fronting-with-microsoft-azure/</link>
       <pubDate>Wed, 27 Feb 2019 18:48:19 -0400</pubDate>
       
-      <guid>https://truneski.github.io/post/second-post/</guid>
+      <guid>https://truneski.github.io/post/2019/02/27/empire-domain-fronting-with-microsoft-azure/</guid>
       <description>Introduction Domain Fronting used to be all the rage a while back. It’s still actively being used by Red Teams and Malicious operators. My interest was recently renewed by this detailed blog post by digininja and this one by @rvrsh3ll. This post doesn’t present any new research as there have been plenty of resources detailing how to setup domain fronting for Empire and Cobaltstrike. I wanted to post one for using Empire with Microsoft Azure since I didn’t see one detailing the setup.</description>
     </item>
     
     <item>
       <title>Cobaltstrike Over External C2 via Dropbox</title>
-      <link>https://truneski.github.io/post/fourth-post/</link>
+      <link>https://truneski.github.io/post/2018/11/05/cobaltstrike-over-external-c2-via-dropbox/</link>
       <pubDate>Mon, 05 Nov 2018 16:41:25 -0500</pubDate>
       
-      <guid>https://truneski.github.io/post/fourth-post/</guid>
+      <guid>https://truneski.github.io/post/2018/11/05/cobaltstrike-over-external-c2-via-dropbox/</guid>
       <description>Introduction After completing the OSCP, I wanted to really learn python and create a tool that would be useful to the InfoSec community. A while back, I saw a few awesome tools leveraging command and control for Cobaltstrike via the external c2 specification. Specifically, the post from Rhino Security Labs caught my eye since it was built specifically for Cobaltstrike using the Externalc2 specification and most importantly it was made using python.</description>
     </item>
     
     <item>
       <title>Dropbox Command and Control Over Powershell With Invoke DBC2</title>
-      <link>https://truneski.github.io/post/first-post/</link>
+      <link>https://truneski.github.io/post/2017/03/03/dropbox-command-and-control-over-powershell-with-invoke-dbc2/</link>
       <pubDate>Fri, 03 Mar 2017 07:02:14 +0100</pubDate>
       
-      <guid>https://truneski.github.io/post/first-post/</guid>
+      <guid>https://truneski.github.io/post/2017/03/03/dropbox-command-and-control-over-powershell-with-invoke-dbc2/</guid>
       <description>Introduction Consider a scenario where a Penetration Tester is trying to set up command and control on an internal network blocking all outbound traffic, except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation, there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control over file sharing sites such as Dropbox and Google docs.</description>
     </item>
     

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Cobaltstrike Over External C2 via Dropbox // Sic Parvis Magna.</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Truneski" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://truneski.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-89933497-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cobaltstrike Over External C2 via Dropbox"/>
+<meta name="twitter:description" content="Introduction After completing the OSCP, I wanted to really learn python and create a tool that would be useful to the InfoSec community. A while back, I saw a few awesome tools leveraging command and control for Cobaltstrike via the external c2 specification. Specifically, the post from Rhino Security Labs caught my eye since it was built specifically for Cobaltstrike using the Externalc2 specification and most importantly it was made using python."/>
+
+    <meta property="og:title" content="Cobaltstrike Over External C2 via Dropbox" />
+<meta property="og:description" content="Introduction After completing the OSCP, I wanted to really learn python and create a tool that would be useful to the InfoSec community. A while back, I saw a few awesome tools leveraging command and control for Cobaltstrike via the external c2 specification. Specifically, the post from Rhino Security Labs caught my eye since it was built specifically for Cobaltstrike using the Externalc2 specification and most importantly it was made using python." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://truneski.github.io/post/2018/11/05/cobaltstrike-over-external-c2-via-dropbox/" />
+<meta property="article:published_time" content="2018-11-05T16:41:25-05:00"/>
+<meta property="article:modified_time" content="2018-11-05T16:41:25-05:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://truneski.github.io/"><img class="app-header-avatar" src="https://truneski.github.io/post/images/avatar.png" alt="Truneski" /></a>
+      <h1>Sic Parvis Magna.</h1>
+      <p>@truneski. Gamer and an Infosec Enthusiast. Interested in Red Teaming and Low Level Things.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Cobaltstrike Over External C2 via Dropbox</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 5, 2018
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h1 id="introduction">Introduction</h1>
+
+<p>After completing the OSCP, I wanted to really learn python and create a tool that would be useful to the InfoSec community.
+A while back, I saw a few awesome tools leveraging command and control for Cobaltstrike via the external c2 specification.
+Specifically, the <a href="https://rhinosecuritylabs.com/aws/hiding-cloudcobalt-strike-beacon-c2-using-amazon-apis/">post</a> from <a href="https://twitter.com/RhinoSecurity">Rhino Security Labs</a> caught my eye since it was built specifically for Cobaltstrike using the Externalc2 specification and most importantly it was made using python.
+I wanted to see if I can use dropbox using their APIs as malware command and control specifically by leveraging Cobaltstrike externalc2 specification.</p>
+
+<h1 id="dropbox-as-a-c2-channel-using-the-dropbox-apis">Dropbox as a C2 channel using the Dropbox APIs</h1>
+
+<p>Dropbox is an awesome cloud service. I won&rsquo;t really go into detail about all the major advantages Dropbox offers but just to mention a few, it&rsquo;s HTTPS enabled and it&rsquo;s a
+trusted cloud service. Therefore Dropbox isn&rsquo;t categorized as a malicious domain right off the bat. Dropbox also has a rich and well documented API which is fantastic. The <a href="https://pypi.org/project/dropbox/">official dropbox
+python module</a> allows for easy and fast implementation of communication over the APIs.</p>
+
+<h1 id="cobalt-strike-and-the-external-c2-specification">Cobalt Strike and the External C2 Specification</h1>
+
+<p>Cobaltstrike is a threat emulation tool made by Raphael Mudge (<a href="https://twitter.com/armitagehacker">@armitagehacker</a>) to aid pentesters in targeted attacks against modern enterprises.
+Cobalttrike has two components: Beacon and Team Server.
+Beacon is the malicious part that runs in the victim machine.
+Beacon is also responsible for setting up communications with the team server to receive and execute further attack commands from an operator.
+The Team Server is responsible for administering each Beacon that calls home for further commands from the operator.</p>
+
+<p>A While back the External Command and Control (External C2) interface was added to Cobaltstrike.
+This feature allows third-party programs to act as a communication layer between Cobalt Strike and its Beacon payload.
+This allows for reduction to zero, the number of malicious domains and servers required to redirect to your Team Server.</p>
+
+<h1 id="abstracting-the-specification-using-frameworks">Abstracting the Specification Using Frameworks</h1>
+
+<p>Ever since its release there have been frameworks created by members of the InfoSec community, to act as wrappers for the externalc2 specification.
+The framework we will use in this post is Jonathon Echavarria’s (<a href="https://twitter.com/Und3rf10w">@Und3rf10w</a>)
+<a href="https://github.com/Und3rf10w/external_c2_framework">external_c2_framework</a> and with a ton of guidance from final one from <a href="https://github.com/RhinoSecurityLabs/external_c2_framework/">Rhino Labs github</a>
+This framework was chosen for two reasons:</p>
+
+<h4 id="1-python">1. Python</h4>
+
+<p>Since I had taken time to study python over the past 4 weeks, I wanted to see if I can go BIG and try and implement it in python.
+The only functionality missing from Echavarria’s framework was multi-client support.
+As noted from the RhinoLabs the time of this article, the framework only supported one Beacon to one Team Server.
+I decided to closely follow the RhinoLabs blogpost as a guide, to expand this capability and enable for support multiple Beacons on the Team Server.</p>
+
+<h4 id="2-modularity">2. Modularity</h4>
+
+<p>The external specification is broken into an encoding and transport mechanism, making the implementation straightforward. This part really required little to no modifications.</p>
+
+<h1 id="overview-of-dropbox-as-a-communication-channel">Overview of Dropbox as a Communication Channel</h1>
+
+<p>The Team server and beacon both communicate with each other through Dropbox APIs by creating and deleting files in Dropbox.</p>
+
+<p>When the custom beacon generated by the framework executes on the victim (or client) machine, it registers itself in dropbox by creating a file with a unique staging key.
+This key is comprised of two parts – a static prefix that notifies the Team Server the Beacon is ready to be staged and receive the full payload,
+and a unique identifier that the underlying external C2 server can use to identify commands that need to be sent to the Beacon.</p>
+
+<p>The External C2 Server is responsible for translating data between your external communication channel, in this case the Dropbox API, and the Team Server itself.
+The External C2 Server will poll Dropbox for the staging key and extract the agent’s unique identifier.
+It then forwards the request up to the Team Server to receive the full payload to execute on the client.</p>
+
+<p>To notify the client that a new task is ready for it to execute the External C2 Server creates a new file in Dropbox.
+This file’s key is comprised of the Beacon’s unique ID generated from above and a static suffix, &lsquo;TaskForYou&rsquo;.
+The contents of this file contain the encoded command (encoded by the encoding module) for the Beacon to execute.</p>
+
+<p>After initial registration, the beacon will periodically poll for tasks from Dropbox looking for the task key corresponding to itself.
+It will then download and delete the file, decode the contents and execute the command.
+Once executed, it will encode the output of the command and create a new file in dropbox with the response key and the encoded results.</p>
+
+<p>The External C2 Server then polls until it receives a response from the agent, pulls and deletes the file, and sends the results up to the Team Server.</p>
+
+<h1 id="diagram-showing-the-overview-of-the-process">Diagram Showing the Overview of the Process</h1>
+
+<p><img src="https://truneski.github.io/post/images/Dropbox-C2-Malware-beacon.png" alt="Dropbox-C2-Malware-beacon.png" /></p>
+
+<h1 id="drawbacks-of-dropbox-as-a-c2-channel">Drawbacks of Dropbox as a C2 Channel</h1>
+
+<ol>
+<li>You need to distribute the API token to the beacon executable.</li>
+<li>Further, while we tackled the problem of multi-client beacon functionality it still lacks task sequencing, as per the RhinoLabs post. Without this the client can only receive one command and submit one response at a time.</li>
+<li>Be wary of API rate limiting from Dropbox. This should be taken into consideration when determining the number of clients per Team server and how many requests need to be taken into account per client and Team server.</li>
+</ol>
+
+<h1 id="demo-proof-of-concept">Demo Proof Of Concept</h1>
+
+<p>The fork of external_c2_framework, along with the Dropbox transport module, have been uploaded to my Github:</p>
+
+<h1 id="hahahugoshortcode-s0-hbhb">
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/nTRHSh_uCcA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</h1>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>This was a simple a blogpost to introduce using the External C2 specs for Cobaltstrike via Dropbox. The approach mentioned in this blogpost and other references below should work for other cloud services.
+The blogpost from RhinoLabs has a good overview of how to improve security defenses including knowing your network topology and communication habits and implementing several robust host based protections.</p>
+
+<p>Special thanks to Dwight Hohnstein (<a href="https://twitter.com/djhohnstein">@djhohnstein</a>) for encouraging me to see this project to completion and also for being just an all around nice guy.
+Hopefully this inspires more researchers to explore new ways for C2 research opportunities.</p>
+
+<h1 id="references">References</h1>
+
+<ol>
+<li><a href="https://rhinosecuritylabs.com/aws/hiding-cloudcobalt-strike-beacon-c2-using-amazon-apis/">https://rhinosecuritylabs.com/aws/hiding-cloudcobalt-strike-beacon-c2-using-amazon-apis/</a></li>
+<li><a href="https://www.insomniacsecurity.com/2018/01/11/externalc2.html">https://www.insomniacsecurity.com/2018/01/11/externalc2.html</a></li>
+<li><a href="https://github.com/Und3rf10w/external_c2_framework">https://github.com/Und3rf10w/external_c2_framework</a></li>
+<li><a href="https://github.com/RhinoSecurityLabs/external_c2_framework/">https://github.com/RhinoSecurityLabs/external_c2_framework/</a></li>
+<li><a href="https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki#domain-fronting">https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki#domain-fronting</a></li>
+<li><a href="https://labs.mwrinfosecurity.com/blog/tasking-office-365-for-cobalt-strike-c2">https://labs.mwrinfosecurity.com/blog/tasking-office-365-for-cobalt-strike-c2</a></li>
+<li><a href="https://www.cobaltstrike.com/help-externalc2">https://www.cobaltstrike.com/help-externalc2</a></li>
+</ol>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

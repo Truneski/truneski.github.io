@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Empire Domain Fronting With Microsoft Azure // Sic Parvis Magna.</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Truneski" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://truneski.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-89933497-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Empire Domain Fronting With Microsoft Azure"/>
+<meta name="twitter:description" content="Introduction Domain Fronting used to be all the rage a while back. It’s still actively being used by Red Teams and Malicious operators. My interest was recently renewed by this detailed blog post by digininja and this one by @rvrsh3ll. This post doesn’t present any new research as there have been plenty of resources detailing how to setup domain fronting for Empire and Cobaltstrike. I wanted to post one for using Empire with Microsoft Azure since I didn’t see one detailing the setup."/>
+
+    <meta property="og:title" content="Empire Domain Fronting With Microsoft Azure" />
+<meta property="og:description" content="Introduction Domain Fronting used to be all the rage a while back. It’s still actively being used by Red Teams and Malicious operators. My interest was recently renewed by this detailed blog post by digininja and this one by @rvrsh3ll. This post doesn’t present any new research as there have been plenty of resources detailing how to setup domain fronting for Empire and Cobaltstrike. I wanted to post one for using Empire with Microsoft Azure since I didn’t see one detailing the setup." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://truneski.github.io/post/2019/02/27/empire-domain-fronting-with-microsoft-azure/" />
+<meta property="article:published_time" content="2019-02-27T18:48:19-04:00"/>
+<meta property="article:modified_time" content="2019-02-27T18:48:19-04:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://truneski.github.io/"><img class="app-header-avatar" src="https://truneski.github.io/post/images/avatar.png" alt="Truneski" /></a>
+      <h1>Sic Parvis Magna.</h1>
+      <p>@truneski. Gamer and an Infosec Enthusiast. Interested in Red Teaming and Low Level Things.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Empire Domain Fronting With Microsoft Azure</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 27, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Domain Fronting used to be all the rage a while back. It’s still actively being used by Red Teams and Malicious operators. My interest was recently renewed by this detailed <a href="https://digi.ninja/blog/domain_fronting.php">blog post</a> by <a href="https://twitter.com/digininja">digininja</a> and this <a href="https://medium.com/@rvrsh3ll/hardening-your-azure-domain-front-7423b5ab4f64">one</a> by <a href="https://twitter.com/424f424f">@rvrsh3ll</a>. This post doesn’t present any new research as there have been plenty of resources detailing how to setup domain fronting for <a href="https://github.com/EmpireProject/Empire">Empire</a> and <a href="https://www.cobaltstrike.com/">Cobaltstrike</a>. I wanted to post one for using Empire with Microsoft Azure since I didn’t see one detailing the setup. We’ll start off with CDNs which are crucial to understanding Domain Fronting.</p>
+
+<h1 id="content-delivery-networks-cdns">Content Delivery Networks (CDNs)</h1>
+
+<p>A CDN simply is a global network of servers that deliver content to visitors of a website based on where that visitor is located. CDNs offer several advantages to businesses worldwide such as Protection against DDoS attacks, protection against increased traffic, helping with SEO, Reliability and its cheap.</p>
+
+<h1 id="intro-to-domain-fronting">Intro to Domain Fronting</h1>
+
+<p>At a high level, domain fronting is an undocumented feature of CDNs. It can be used to transmit command and control traffic to the intended origin that’s being blocked by egress filters. The domain name of the attacker controlled endpoint is only communicated after the establishment of an encrypted HTTPS connection. Attackers can simply swap in their host header for the CDN to route what appears to be trusted website traffic to their command and control server instead.</p>
+
+<h1 id="technical-details">Technical Details</h1>
+
+<p>This technique is made possible when a large trusted service provider uses a shared SNI certificate containing both a common and target HTTPS domains. When the traffic is received by the Edge Server (ex: located at azureedge.net), the packet is forwarded to the Origin Server (ex: darthmalicious.azureedge.net) specified in the packet’s Host header. The Origin Server will then directly forward traffic to a specified domain, which we’ll point to our Empire Instance. We can see this cool example from <a href="https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki/blob/master/images/domain-fronting.png">the Red Team wiki</a>.</p>
+
+<p><img src="https://raw.githubusercontent.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki/master/images/domain-fronting.png" alt="redteam-wiki-example" /></p>
+
+<h1 id="real-world-use-cases">Real World Use Cases</h1>
+
+<p>Domain fronting is frequently used in heavily censored nations by political activists to circumvent censorship and ant-free speech controls. This is mostly done over Social Media Chat apps such as Signal and Whatsapp. It’s also used by Proxy Networks e.g. Tor. In Infosec, this technique has been used by both malicious and legitimate attackers. AWS CloudFront is normally the CDN of choice for domain fronting but we’ll use Microsoft Azure. Using domain fronting should always be carefully considered since it may violate terms and conditions of the service providers.</p>
+
+<h1 id="setting-up-azure">Setting up Azure</h1>
+
+<p>Setting up on Azure CDN is fairly straight forward and relatively painless. One just needs a little patience. The <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-overview">Azure documentation</a> on CDNs is amazing and this <a href="https://chigstuff.com/blog/metasploit-domain-fronting-with-microsoft-azure/">blog post</a> from <a href="https://twitter.com/ch1gg1ns">@ch1gg1ns</a> helped out a ton. We first Log in to the <a href="https://portal.azure.com/">Azure portal</a>. We enable Azure Content Delivery Network (CDN) by creating a new CDN profile and CDN endpoint. In the upper left, select Create a resource.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/create-resource.png" alt="create-resource.png" /></p>
+
+<p>We then select Web and then CDN.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/web-cdn.png" alt="web-cdn.png" /></p>
+
+<p>The CDN profile pane, we can then create a CDN resource and create an endpoint for that resource.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/success2.png" alt="success2.png" /></p>
+
+<p>After we’ve successfully created it we will get this notification.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/success.png" alt="success.png" /></p>
+
+<p>This is where the patience part comes in. After creating the CDN and the endpoint, we have to wait around 90 minutes for the endpoint to propagate throughout the CDN. We update the endpoint’s caching settings so that our CDN won’t cache our traffic like the usual CDN behavior. This enables us to use this as a communications channel. Change your caching behavior and query string caching behavior to bypass and we’re done.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/cache2.png" alt="cache2.png" /></p>
+
+<p>Before moving on we need to explain a few things.</p>
+
+<p>CDN Endpoint Name is going to be in our Empire Host header Communication profile in the HTTP request. This will point to our C2 infrastructure where Empire is hosted. You can make it sound more legitimate.</p>
+
+<p>Origin Hostname is your IP address or DNS name for you C2 infrastructure. It simply connects the CDN to your resources and gets the domain working.</p>
+
+<h1 id="finding-domain-frontable-azure-domains">Finding domain frontable Azure domains</h1>
+
+<p>While our CDN is propagating, we search for a high-profile domain name to hide behind that will also work for our CDN. There’s a great resource in <a href="https://theobsidiantower.com/2017/07/24/d0a7cfceedc42bdf3a36f2926bd52863ef28befc.html">finding frontable azure domains</a>. However, I went a slightly different route and used <a href="https://github.com/rvrsh3ll/FindFrontableDomains">FindFrontableDomains</a> by <a href="https://twitter.com/424f424f">@rvrsh3ll</a>. We’ll use watcocdn1.azureedge.net.</p>
+
+<h1 id="testing-the-cdn">Testing the CDN</h1>
+
+<p>To properly test if our CDN communication is properly setup, we’ll use the Empire Instance we already have running. The Empire instance should respond the same way when accessed directly and via the CDN we just created. When accessing via the CDN, we’ll want to set the Host Header to the CDN endpoint we created before.</p>
+
+<pre><code>root@kali:~# curl -k https://[redacted].com
+
+&lt;--Snipped Output --&gt;
+&lt;body&gt;
+&lt;div id=&quot;container&quot;&gt;
+&lt;a href=&quot;http://go.microsoft.com/fwlink/?linkid=66138&amp;amp;clcid=0x409&quot;&gt;&lt;img src=&quot;welcome.png&quot; alt=&quot;IIS7&quot; width=&quot;571&quot; height=&quot;411&quot; /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;--Snipped Output --&gt;
+
+
+root@kali:~# curl -k --header &quot;Host: darthmalicious.azureedge.net&quot; &quot;https://watcocdn1.azureedge.net/&quot;
+
+&lt;--Snipped Output --&gt;
+&lt;body&gt;
+&lt;div id=&quot;container&quot;&gt;
+&lt;a href=&quot;http://go.microsoft.com/fwlink/?linkid=66138&amp;amp;clcid=0x409&quot;&gt;&lt;img src=&quot;welcome.png&quot; alt=&quot;IIS7&quot; width=&quot;571&quot; height=&quot;411&quot; /&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;--Snipped Output --&gt;
+</code></pre>
+
+<h1 id="setting-up-empire">Setting up Empire</h1>
+
+<p>This is also relatively simple. We set the Listener Host option to our Azure front domain (watcocdn1.azureedge.net in our case) and we then add a custom header in our DefaultProfile that points to our CDN endpoint name (darthmalicious.azureedge.net). Example listener configuration is shown.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/empire-listener.png" alt="empire-listener.png" /></p>
+
+<p>We can then start the Listener.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/starting-empire.png" alt="starting-empire.png" /></p>
+
+<p>We launch an Empire stager, we can see that Azure’s Front Domain is used as the C2 domain.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/stager.png" alt="stager.png" /></p>
+
+<p>Examining the traffic, we see the Host Header is used to redirect traffic to its intended destination.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/wireshark.png" alt="wireshark.png" /></p>
+
+<h1 id="hardening-your-azure-domain-front">Hardening Your Azure Domain Front</h1>
+
+<p>Recently <a href="https://twitter.com/424f424f">@rvrsh3ll</a> came out with nice post on medium on <a href="https://medium.com/@rvrsh3ll/hardening-your-azure-domain-front-7423b5ab4f64">hardening your Azure Domain Front</a>. This section will cover a few lessons from that post with regards to Azure CDN Rules Engine.</p>
+
+<h1 id="cdn-setup">CDN Setup</h1>
+
+<p>Visiting the <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine">Azure CDN Rules Engine documentation</a> we see it’s a feature of Azure CDN Premium from Verizon only. We create a CDN profile and endpoint name with this in mind. Once you create your CDN endpoint, it may take a few minutes to an hour to configure and propagate completely just as before.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/premium-verizon2.png" alt="premium-verizon2.png" /></p>
+
+<h1 id="basic-redirection-rule-creation">Basic Redirection Rule Creation</h1>
+
+<p>While your CDN is running, open the profile page and click the Manage button.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/manage2.png" alt="manage2.png" /></p>
+
+<p>We can then select “HTTP Large” &gt; Rules Engine and we get to this page.</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/cool-rules.png" alt="cool-rules.png" /></p>
+
+<p>On this page, we can create conditions to match our desired rules. We’ll cover a rule to redirect based on User-Agent using the <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine-reference-match-conditions#request-header-regex">Request Header Regex</a>. If a User-Agent doesn’t match our specified User-Agent we redirect the traffic to <a href="https://twitter.com">Twitter</a>.</p>
+
+<p><img src="post/images/domain-fronting/rules4.png" alt="rules4.png" /></p>
+
+<p>After creation we’ll get a warning: “Approval of new Rules takes up to 4 hours.”</p>
+
+<p><img src="https://truneski.github.io/post/images/domain-fronting/rules3.png" alt="rules3.png" /></p>
+
+<p>If all goes well, our CDN rules should redirect any non-matching traffic to <a href="https://twitter.com">Twitter</a> and allow matching traffic through to our Empire Instance.</p>
+
+<p>We’ve successfully allowed an empire agent through our cdn and redirected any other traffic to <a href="https://twitter.com">Twitter</a>.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>This was mainly a post to summarize my own adventures when looking into domain fronting. While this article discusses a technique to bypass several network security tools, they have their importance when used with other ways of hunting for malicious traffic. Defense in depth should be considered when trying to defend against this technique e.g. Application Whitelisting, Robust EDR solution etc. An approach the blue team might consider is decrypting all traffic and looking for signs of C2 traffic e.g. <a href="https://twitter.com/cyb3rops/status/1100668485770846210">Default Empire User-Agents</a>, predictable call back times from agents.</p>
+
+<p>Special thanks to <a href="https://twitter.com/th3_gr00t">Monsieur Numi</a> who helped me get a Microsoft Azure account and all the researchers who looked into domain fronting. I hope this post encourages more researchers to look into more domain fronting opportunities in their offensive engagements and operations.</p>
+
+<h1 id="references">References</h1>
+
+<ol>
+<li><a href="https://www.xorrior.com/Empire-Domain-Fronting/">https://www.xorrior.com/Empire-Domain-Fronting/</a></li>
+<li><a href="https://chigstuff.com/blog/metasploit-domain-fronting-with-microsoft-azure/">https://chigstuff.com/blog/metasploit-domain-fronting-with-microsoft-azure/</a></li>
+<li><a href="https://github.com/rvrsh3ll/FindFrontableDomains">https://github.com/rvrsh3ll/FindFrontableDomains</a></li>
+<li><a href="https://medium.com/@rvrsh3ll/hardening-your-azure-domain-front-7423b5ab4f64">https://medium.com/@rvrsh3ll/hardening-your-azure-domain-front-7423b5ab4f64</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine">https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine-reference-match-conditions#request-header-regex">https://docs.microsoft.com/en-us/azure/cdn/cdn-rules-engine-reference-match-conditions#request-header-regex</a></li>
+<li><a href="https://medium.com/@malcomvetter/simplifying-domain-fronting-8d23dcb694a0">https://medium.com/@malcomvetter/simplifying-domain-fronting-8d23dcb694a0</a></li>
+<li><a href="https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki/blob/master/README.md#domain-fronting">https://github.com/bluscreenofjeff/Red-Team-Infrastructure-Wiki/blob/master/README.md#domain-fronting</a></li>
+<li><a href="https://holdmybeersecurity.com/2018/06/27/how-to-red-team-domain-fronting-with-powershell-empire-and-cloudfront/">https://holdmybeersecurity.com/2018/06/27/how-to-red-team-domain-fronting-with-powershell-empire-and-cloudfront/</a></li>
+<li><a href="https://www.sans.org/cyber-security-summit/archives/file/summit-archive-1542139101.pdf">https://www.sans.org/cyber-security-summit/archives/file/summit-archive-1542139101.pdf</a></li>
+<li><a href="https://twitter.com/cyb3rops/status/1100668485770846210">https://twitter.com/cyb3rops/status/1100668485770846210</a></li>
+</ol>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
