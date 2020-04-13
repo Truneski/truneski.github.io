@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Dropbox Command and Control Over Powershell With Invoke DBC2 // Sic Parvis Magna.</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Truneski" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://truneski.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-89933497-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dropbox Command and Control Over Powershell With Invoke DBC2"/>
+<meta name="twitter:description" content="Introduction Consider a scenario where a Penetration Tester is trying to set up command and control on an internal network blocking all outbound traffic, except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation, there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control over file sharing sites such as Dropbox and Google docs."/>
+
+    <meta property="og:title" content="Dropbox Command and Control Over Powershell With Invoke DBC2" />
+<meta property="og:description" content="Introduction Consider a scenario where a Penetration Tester is trying to set up command and control on an internal network blocking all outbound traffic, except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation, there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control over file sharing sites such as Dropbox and Google docs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://truneski.github.io/post/first-post/" />
+<meta property="article:published_time" content="2017-03-03T07:02:14&#43;01:00"/>
+<meta property="article:modified_time" content="2017-03-03T07:02:14&#43;01:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://truneski.github.io/"><img class="app-header-avatar" src="https://truneski.github.io/post/images/avatar.png" alt="Truneski" /></a>
+      <h1>Sic Parvis Magna.</h1>
+      <p>Gamer and Infosec Enthusiast. OSCP. Interested in Red Teaming and Low Level Things.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/truneski" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Dropbox Command and Control Over Powershell With Invoke DBC2</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 3, 2017
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Consider a scenario where a Penetration Tester is trying to set up command and control on an internal network blocking all outbound traffic, except traffic towards a few specific servers or 3rd party File Sharing websites. In this situation, there are still a few options a tester can use. One of those is DNS command and control and the other is Command and control over file sharing sites such as Dropbox and Google docs. In this blog post we will explore how Dropbox can be used for such operations and more.</p>
+
+<p>In case you&rsquo;re unfamiliar with this concept, it involves using DropBox as a platform for command and control since Dropbox is a legitimate website for storing files and documents. This concept makes it incredibly hard for users to immediately suspect and report malicious activities on their systems, therefore making C2 over DropBox highly effective.</p>
+
+<p><a href="https://github.com/Arno0x/DBC2">DropBox-C2(DBC2)</a> by <a href="https://twitter.com/arno0x0x">@Arno0x0x</a> is the best example I&rsquo;ve
+come across for such a working example. It supports running commands, shellMode for a more interactive feel, launching processes,
+Persistence, Data Exfiltration and running Custom Powershell modules.</p>
+
+<p>The last feature I was really excited about because it gives testers many possibilities including running their
+own custom Powershell scripts in Memory without touching disk. The agent is written in C-Sharp and the server is written in Python.</p>
+
+<p>After a week and a half, I managed to implement some features of the DBC2 agent in Powershell. I have been teaching myself Powershell over the last month and thought I&rsquo;d take on this challenge to further my knowledge of Powershell since it’s quite common among APTs and Penetration Testers.
+This is due to its versatility, many features and the fact that it’s inbuilt in Windows systems.
+In this blog post we&rsquo;ll look at how the DBC2-Powershell script can be used</p>
+
+<h1 id="setup">Setup</h1>
+
+<p>You can read how to setup and use the original <a href="https://github.com/Arno0x/DBC2">DBC2</a>, its a fantastic resource
+and I highly recommend it. Once you&rsquo;ve setup the server and its ready, you can start it like this:</p>
+
+<pre><code>python dropboxc2.py
+</code></pre>
+
+<p>The server will then ask for your DropBox Access token and master password to encrypt all data between the agent and server controller.
+A windows machine with Powershell version 5.0 is required. The DBC2 script can be loaded by downloading the script and running it as shown:</p>
+
+<pre><code>. .\Invoke-DBC2.ps1
+</code></pre>
+
+<p>Once the script is loaded run the following command to start the DBC2 Powershell Agent:</p>
+
+<pre><code>Invoke-DBC2
+</code></pre>
+
+<p>Invoke-DropBox is the name of the Main function used in DBC2-Powershell. After its executed it will create two files on your Dropbox account. A status file and a command file each with a unique identifier based on each machine its run on.</p>
+
+<h1 id="executing-native-commands">Executing Native Commands</h1>
+
+<p>From the server you can direct the client to perform and run various commands.
+Here&rsquo;s a video of what that looks like:</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/srddn2BBKIQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="launching-processes">Launching Processes</h1>
+
+<p>From the server side you can have the agent launch processes. In this case we&rsquo;ll be launching notepad and chrome.</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/xi9E8f6ybc4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="file-transfers">File Transfers</h1>
+
+<p>The script can transfer files from the controller to the server and vice versa.
+The short video shows how to send a file from the controller to the agent:</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/azdi8yJmrRM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<p>The short video shows how to send a file from the agent to the controller:</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/fUx3EXkzJ2M" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="using-powershell-modules">Using Powershell Modules</h1>
+
+<p>DBC2-Powershell Agent has the ability to run custom Powershell and return the output to the server.
+It still has a few kinks which I am currently working to fix but for now it can execute the scripts and return output just fine. In the video below we will use PowerDump to dump local password hashes from the local system:</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/7U7Vs7xVQGc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="persistence">Persistence</h1>
+
+<p>Unlike the original DBC2 agent which relied on scheduled tasks with a malicious bat file for persistence,
+DBC2-Powershell uses a malicious registry runkey for persistence which downloads and executes our published agent whenever a user logs on. The video below shows how the persistence technique works:</p>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/-kUAJ4-rfdA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<h1 id="future-work">Future Work</h1>
+
+<p>There is still a lot to do in this project.Due to my limited Python knowledge, I modified the controller code to suit my needs. For example manually setting the master key and iv in the pollingThread file instead of the initial default config file to better understand how the crypto works.</p>
+
+<p>There are also some features I&rsquo;m yet to implement which are working well in the original DBC2 and they include fixing the shellmode which is functional but not yet ready to be fully demo’d, changing the polling time, setting the sleep time, better output from the custom PS modules.
+It&rsquo;s definitely on the to-do list :). I&rsquo;ll be devoting a few hours a week so that I can finally complete it. Any help is welcome.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Command and control over DropBox has awesome practical advantages. If you doubt the power of such a technique you only need to read the awesome report by Cyber-X code named <a href="https://cyberx-labs.com/en/blog/operation-bugdrop-cyberx-discovers-large-scale-cyber-reconnaissance-operation/">Operation BugDrop</a>
+That report only fueled me more to release an early version of this proof of concept even if incomplete.
+The project can be found at <a href="https://github.com/Truneski/Invoke-DBC2">Invoke-DBC2.</a>
+Penetration Testers can now use DBC2-Powershell alongside familiar PowerShell tools.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
