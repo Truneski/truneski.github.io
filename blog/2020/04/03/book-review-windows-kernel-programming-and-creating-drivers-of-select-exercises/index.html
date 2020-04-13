@@ -819,7 +819,7 @@ This device name is filled in on successful return from the <strong>IoQueryFileD
 IoQueryFileDosDeviceName(Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject, <span style="color:#f92672">&amp;</span>ObjectNameInformation);
 KdPrint((<span style="color:#e6db74">&#34;Dos Letter Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name));</code></pre></div>
 
-<p>Then we allocate space for the name for the target filename:</p>
+<p>Then we allocate space for the name of the target filename:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">auto</span> dosName <span style="color:#f92672">=</span> ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name;
 <span style="color:#66d9ef">auto</span> NameLength <span style="color:#f92672">=</span> (USHORT)dosName.MaximumLength <span style="color:#f92672">+</span> Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject<span style="color:#f92672">-&gt;</span>FileName.MaximumLength <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
