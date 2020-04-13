@@ -6,19 +6,10 @@
     <description>Recent content in Posts on Truneski</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 08:02:14 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 27 Apr 2019 18:57:03 -0400</lastBuildDate>
     
 	<atom:link href="https://truneski.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises</title>
-      <link>https://truneski.github.io/blog/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/</link>
-      <pubDate>Fri, 03 Apr 2020 08:02:14 +0100</pubDate>
-      
-      <guid>https://truneski.github.io/blog/2020/04/03/book-review-windows-kernel-programming-and-creating-drivers-of-select-exercises/</guid>
-      <description>Table of contents  Introduction High Level Overview  Chapter 1: Windows Internals Overview Chapter 2: Getting Started with Kernel Development Chapter 3: Kernel Programming Basics Chapter 4: Driver from Start to Finish Chapter 5: Debugging Chapter 6: Kernel Mechanisms Chapter 7: The I/O Request Packet Chapter 8: Process and Thread Notifications Chapter 9: Object and Registry Notifications Chapter 10: Introduction to File System Mini-Filters Chapter 11: Miscellaneous Topics  A word on Creating Drivers of Select Exercises</description>
-    </item>
     
     <item>
       <title>Pentester Academy Course Review - Attacking and Defending Active Directory</title>
