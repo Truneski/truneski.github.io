@@ -173,18 +173,18 @@ reviews/B07TJT1GTF?reviewerType=all_reviews">Book Reviews on Amazon</a>.</p>
 
 <p>This chapter provides an overview of Windows Internals concepts that will be used throughout the book.
 These concepts are Virtual Memory, Threads, Processes. Services, Handles, Objects, System Services and General System Architecture.
-For a more better and through understanding of these concepts, the author has a <a href="https://www.pluralsight.com/courses/windows-internals">Windows Internals Course Series on PluralSight</a>.</p>
+For a more better and thorough understanding of these concepts, the author has a <a href="https://www.pluralsight.com/courses/windows-internals">Windows Internals Course Series on PluralSight</a>.</p>
 
 <h4 id="chapter-2-getting-started-with-kernel-development-a-name-subparagraph2-a">Chapter 2: Getting Started with Kernel Development <a name="subparagraph2"></a></h4>
 
 <p>This chapter deals with the fundamentals of getting started with kernel development and setting up a driver development environment.
 I also wrote a minimalistic kernel driver to prove the driver development was set and ready to go for the coming sections.
-My development environment matched the setup described in this chapter.</p>
+My development environment matched the setup described in this chapter. I faced no challenges setting up this environment.</p>
 
 <h4 id="chapter-3-kernel-programming-basics-a-name-subparagraph3-a">Chapter 3: Kernel Programming Basics <a name="subparagraph3"></a></h4>
 
 <p>This section digs deeper into kernel APIs, structures and definitions.
-Mechanisms that invoke code in a driver are also introduced.
+Mechanisms that invoke code in a driver are introduced.
 General kernel programming guidelines were also introduced and covered.</p>
 
 <h4 id="chapter-4-driver-from-start-to-finish-a-name-subparagraph4-a">Chapter 4: Driver from Start to Finish <a name="subparagraph4"></a></h4>
@@ -202,27 +202,27 @@ Setting up both debugging lab instances was particularly useful and nifty especi
 
 <h4 id="chapter-6-kernel-mechanisms-a-name-subparagraph6-a">Chapter 6: Kernel Mechanisms <a name="subparagraph6"></a></h4>
 
-<p>Various mechanisms the Windows Kernel Provides are discussed in this chapter.
+<p>Various mechanisms provided by the Windows Kernel are discussed in this chapter.
 Some are particularly useful when writing the drivers and others when debugging.
-Some of these include but are not limited to Interrupt Request Level, Deferred Procedure Calls and Thread Synchronization.</p>
+These include but are not limited to Interrupt Request Level, Deferred Procedure Calls and Thread Synchronization.</p>
 
 <h4 id="chapter-7-the-i-o-request-packet-a-name-subparagraph7-a">Chapter 7: The I/O Request Packet <a name="subparagraph7"></a></h4>
 
 <p>The chapter deals with how a driver handles requests.
-These requests are packaged as the semi-documented I/O Request Packet (IRP) structure.
+These requests are packaged in the form of the I/O Request Packet (IRP) structure, which is semi-documented by Microsoft.
 Dispatch Routines, Accessing User Buffers and the I/O Stack Location are also introduced and covered.
 Finally, a driver to consolidate more of what was learned was put together.</p>
 
 <h4 id="chapter-8-process-and-thread-notifications-a-name-subparagraph8-a">Chapter 8: Process and Thread Notifications <a name="subparagraph8"></a></h4>
 
 <p>Kernel drivers have the ability to be notified when certain important events occur.
-In this chapter some of the events covered were process creation and destruction, thread creation and destruction and image loads.</p>
+This chapter covers such the events including process creation and destruction, thread creation and destruction and image loads.</p>
 
 <h4 id="chapter-9-object-and-registry-notifications-a-name-subparagraph9-a">Chapter 9: Object and Registry Notifications <a name="subparagraph9"></a></h4>
 
-<p>In this section, intercepting some types of operations are covered.
+<p>This section, covers the interception of certain types of operations.
 First, object notifications, where obtaining handles to some types of objects can be intercepted are explained.
-Second, how to intercept Registry Operations and control Registry Access are explained and covered.</p>
+Second, how to intercept Registry Operations and control Registry Access.</p>
 
 <h4 id="chapter-10-introduction-to-file-system-mini-filters-a-name-subparagraph10-a">Chapter 10: Introduction to File System Mini-Filters <a name="subparagraph10"></a></h4>
 
@@ -241,11 +241,11 @@ My favorite by far was Filter Drivers which could monitor other types of devices
 I also decided to document three of them to show fellow beginners in kernel development what’s possible when dedication and commitment are applied when reading this book.
 By far these examples are far from perfect.
 Some possibly contain bugs but I did my best to put most of the code in a functional and working state.
-The next three sections cover these exercises. The first one is below.</p>
+The next three sections cover these exercises.</p>
 
 <h2 id="exercise-1-create-a-driver-that-monitors-process-creation-and-allows-a-client-application-to-configure-executable-paths-that-should-not-be-allowed-to-execute-a-name-paragraph6-a">Exercise 1: Create a driver that monitors process creation and allows a client application to configure executable paths that should not be allowed to execute. <a name="paragraph6"></a></h2>
 
-<p>Kernel drivers have the ability to be notified when certain important events occur.
+<p>Drivers have the ability to be notified when certain important events occur.
 One of these events is Process Creation.
 This driver’s main purpose is to prevent executables located in configured file paths from executing.
 The Driver will keep a list of protected paths in a simple limited array.</p>
@@ -255,14 +255,14 @@ The Driver will keep a list of protected paths in a simple limited array.</p>
 <p>A driver can register for Process Creation and/or Process Exit notifications.
 We’ll mainly be dealing with process creation.
 Drivers have the power to stop a process from being created, returning an error to the caller initiating the process creation.
-The <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreateprocessnotifyroutineex">PsSetCreateProcessNotifyRoutineEx API</a> is used for registering for process notifications. We can see its syntax below:</p>
+The <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nf-ntddk-pssetcreateprocessnotifyroutineex">PsSetCreateProcessNotifyRoutineEx API</a> is used to register for process notifications. The syntax is as follows:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> NTSTATUS <span style="color:#a6e22e">PsSetCreateProcessNotifyRoutineEx</span>(
    PCREATE_PROCESS_NOTIFY_ROUTINE_EX NotifyRoutine,
    BOOLEAN                           Remove
  );</code></pre></div>
 
-<p>The first argument is the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nc-ntddk-pcreate_process_notify_routine_ex">Driver’s callback Notify Routine</a> having the following syntax:</p>
+<p>The first argument is the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/nc-ntddk-pcreate_process_notify_routine_ex">Driver’s callback Notify Routine</a> which has the following syntax:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> PCREATE_PROCESS_NOTIFY_ROUTINE_EX PcreateProcessNotifyRoutineEx;
 
@@ -273,9 +273,10 @@ The <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk
  )
  {...}</code></pre></div>
 
-<p>The second argument indicates whether the driver is registering or unregistering the callback.
-The API will be called with FALSE in its DriverEntry routine and call the same API with TRUE in its unload routine.
-The first argument is a pointer to an EPROCESS structure that represents the process that’s newly created or exited.
+<p>The second argument indicates whether the driver is registering or unregistering the callback by means of a boolean.
+The API will be called with FALSE in its DriverEntry routine and called with TRUE in its unload routine.</p>
+
+<p>The first argument is a pointer to an EPROCESS structure that represents the process that’s newly created or exited.
 The second argument is ProcessID which is the Process ID of the process.
 The third argument is CreateInfo which is a pointer to a <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-
 _ps_create_notify_info">PS_CREATE_NOTIFY_INFO structure</a> that contains information about the new process. We can see how it’s defined:</p>
@@ -303,7 +304,7 @@ _ps_create_notify_info">PS_CREATE_NOTIFY_INFO structure</a> that contains inform
 <ul>
 <li><strong>CreatingThreadId</strong> - the process ID and thread ID of the process and thread that created the new process.</li>
 <li><strong>ParentProcessId</strong> - the process ID of the parent process for the new process.</li>
-<li><strong>ImageFileName</strong> - a pointer to a UNICODE_STRING string that holds the image file name of the executable, available if the flag FileOpenNameAvailable is set.</li>
+<li><strong>ImageFileName</strong> - a pointer to a UNICODE_STRING string that holds the image filename of the executable, available if the flag FileOpenNameAvailable is set.</li>
 <li><strong>CommandLine</strong> - A pointer to a UNICODE_STRING string that holds the command that is used to execute the process. It may be NULL if it’s not available.</li>
 <li><strong>CreationStatus</strong> – is the NTSTATUS value to return for the process-creation operation. Drivers can change this value to an error code to prevent the process from being created.</li>
 </ul>
@@ -334,11 +335,11 @@ _ps_create_notify_info">PS_CREATE_NOTIFY_INFO structure</a> that contains inform
       <span style="color:#66d9ef">if</span> (FindDirectory(CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName, true) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>) {
 				
         KdPrint((<span style="color:#e6db74">&#34;File not allowed to Execute: %ws</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName<span style="color:#f92672">-&gt;</span>Buffer));
-	CreateInfo<span style="color:#f92672">-&gt;</span>CreationStatus <span style="color:#f92672">=</span> STATUS_ACCESS_DENIED;
+		CreateInfo<span style="color:#f92672">-&gt;</span>CreationStatus <span style="color:#f92672">=</span> STATUS_ACCESS_DENIED;
       
       }
       <span style="color:#66d9ef">else</span> {
-	KdPrint((<span style="color:#e6db74">&#34;File Allowed to Execute: %ws</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName<span style="color:#f92672">-&gt;</span>Buffer));
+		KdPrint((<span style="color:#e6db74">&#34;File Allowed to Execute: %ws</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, CreateInfo<span style="color:#f92672">-&gt;</span>ImageFileName<span style="color:#f92672">-&gt;</span>Buffer));
       }
     }
   }
@@ -356,15 +357,16 @@ If it does exist, we then check for the <strong>ImageFileName</strong> using the
 If the <strong>ImageFileName</strong> exists we can then acquire a mutex so our operations are protected.
 A helper function called <strong>FindDirectory</strong> is used to check if the ImageFileName is protected.
 If it’s part of the directory names protected, we <strong>block its creation</strong> by returning <strong>STATUS_ACCESS_DENIED</strong> via the <strong>CreationStatus</strong>.
-If it’s not part of the protected list, it’s allowed to execute.</p>
+t’s not part of the protected list, it’s allowed to execute.</p>
 
 <h4 id="user-mode-client-a-name-subparagraph14-a">User Mode Client <a name="subparagraph14"></a></h4>
 
-<p>To configure which executable paths which are blocked or unblocked, a user mode client that communicates with the EDR driver was created.
+<p>To configure which executable paths are blocked or unblocked, a user mode client that communicates with the driver was created.
 It allows you to add executable paths to a simple limited array, where these paths are kept in the kernel.
-For every process created, the driver gets an in-line notification.
-The driver examines its array and if the executable path is part of the protected list in the array it’s blocked.
-It’s not a perfect, feel free to use the code and improve upon it.
+For every process created, the driver gets an in-line notification.</p>
+
+<p>The driver examines its array and if the executable path is part of the protected list in the array it’s blocked.
+It’s not perfect, feel free to use the code and improve upon it.
 By default, up to 4 executable paths are protected.
 We can install the driver and then start it:</p>
 
@@ -540,7 +542,7 @@ If the compared Unicode key names are equal to each other, we block the modifica
 It allows you to add registry keys to a <a href="https://docs.microsoft.com/en-us/windows/win32/api/ntdef/ns-ntdef-list_entry">doubly-linked list</a>.
 For every registry key, the driver gets an in-line notification.
 The driver examines this doubly linked list and if the executable registry key to be modified is part of this list, the modification is blocked. Otherwise, the other unprotected registry key operations are not interfered with.
-It’s also not a perfect like the previous example.
+Much like the previous example, it&rsquo;s also not perfect.
 By default, up to 10 registry keys are protected.</p>
 
 <p>We can install and start the driver like in the previous exercise:</p>
@@ -654,7 +656,7 @@ detailed parameters for the I/O operation. It’s defined as shown:</li>
  } FLT_IO_PARAMETER_BLOCK, <span style="color:#f92672">*</span>PFLT_IO_PARAMETER_BLOCK;</code></pre></div>
 
 <p>The notable members are:
-+ <strong>TargetFileObject</strong> is the file object that is the target of this I/O operation.</p>
++ <strong>TargetFileObject</strong>  which is the file object that is the target of this I/O operation.</p>
 
 <ul>
 <li><strong>Parameters</strong> is a <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/fltkernel/ns-fltkernel-_flt_parameters">FLT_PARAMETERS structure</a> that contains the parameters for the
@@ -776,7 +778,7 @@ The <strong>FileDispositionInformationEx</strong> is similar and undocumented, b
 <p>Finally, we are in a delete operation.
 We need to figure out from which process where the delete operation originated from i.e. check if it’s from a blacklisted executable name.
 We do this by combining <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-obopenobjectbypointer">ObOpenObjectByPointer</a> to get a handle to the process and then call
-<a href="https://docs.microsoft.com/en-us/windows/win32/procthread/zwqueryinformationprocess">ZwQueryInformationProcess</a> to query for the process’ image file name, and see if it’s from a blacklisted executable name:</p>
+<a href="https://docs.microsoft.com/en-us/windows/win32/procthread/zwqueryinformationprocess">ZwQueryInformationProcess</a> to query for the process’ image filename, and see if it’s from a blacklisted executable name:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"> <span style="color:#66d9ef">auto</span> process <span style="color:#f92672">=</span> PsGetThreadProcess(Data<span style="color:#f92672">-&gt;</span>Thread);
  NT_ASSERT(process);
@@ -809,7 +811,7 @@ status <span style="color:#f92672">=</span> FltParseFileNameInformation(nameInfo
 <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status))
 	<span style="color:#66d9ef">return</span> FLT_PREOP_COMPLETE;</code></pre></div>
 
-<p>Next, we’ll need to get the DOS file name.
+<p>Next, we’ll need to get the DOS filename.
 First, we get the target file’s dos name. We’ll be using the <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ioqueryfiledosdevicename">IoQueryFileDosDeviceName</a> which retrieves the <strong>MS-DOS device name</strong>.
 This device name is filled in on successful return from the <strong>IoQueryFileDosDeviceName</strong> call in the newly allocated <strong>OBJECT_NAME_INFORMATION structure</strong> pointed to by <strong>ObjectNameInformation</strong>:</p>
 
@@ -817,7 +819,7 @@ This device name is filled in on successful return from the <strong>IoQueryFileD
 IoQueryFileDosDeviceName(Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject, <span style="color:#f92672">&amp;</span>ObjectNameInformation);
 KdPrint((<span style="color:#e6db74">&#34;Dos Letter Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name));</code></pre></div>
 
-<p>Then we allocate space the name for the target file name which we&rsquo;ll then &ldquo;build&rdquo; into a proper DOS file name:</p>
+<p>Then we allocate space the name for the target filename:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">auto</span> dosName <span style="color:#f92672">=</span> ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name;
 <span style="color:#66d9ef">auto</span> NameLength <span style="color:#f92672">=</span> (USHORT)dosName.MaximumLength <span style="color:#f92672">+</span> Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject<span style="color:#f92672">-&gt;</span>FileName.MaximumLength <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
@@ -838,7 +840,7 @@ RtlCopyUnicodeString(<span style="color:#f92672">&amp;</span>NameString, <span s
 RtlAppendUnicodeStringToString(<span style="color:#f92672">&amp;</span>NameString, <span style="color:#f92672">&amp;</span>ObjectNameInformation<span style="color:#f92672">-&gt;</span>Name);
 KdPrint((<span style="color:#e6db74">&#34;Full Source Path Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>NameString))</code></pre></div>
 
-<p>Once, we get the target file name we’ll build the full destination name as it appears after the file has been transferred to the recycle bin:</p>
+<p>Once, we get the target filename we’ll build the full destination name as it appears after the file has been transferred to the recycle bin:</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">// Get DestinationFile DosName
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">auto</span> destNameLength <span style="color:#f92672">=</span> (USHORT)dosName.MaximumLength <span style="color:#f92672">+</span> Data<span style="color:#f92672">-&gt;</span>Iopb<span style="color:#f92672">-&gt;</span>TargetFileObject<span style="color:#f92672">-&gt;</span>FileName.MaximumLength <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>; <span style="color:#75715e">//We&#39;ll add .bkup at the end of the file extension
@@ -860,7 +862,7 @@ RtlAppendUnicodeStringToString(<span style="color:#f92672">&amp;</span>destNameS
 
 KdPrint((<span style="color:#e6db74">&#34;Full Destination Recycle Path Name: %wZ</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>destNameString));</code></pre></div>
 
-<p>Once we have both file names, we can simply copy the file to the Recycle Bin.</p>
+<p>Once we have both filenames, we can simply copy the file to the Recycle Bin.</p>
 
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">status <span style="color:#f92672">=</span> ntCopyFile(NameString, destNameString);
 <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>NT_SUCCESS(status))
@@ -893,8 +895,7 @@ ExFreePoolWithTag(destNameBuffer, DRIVER_TAG);</code></pre></div>
 
 <h4 id="user-mode-client-1-manages-protected-executable-names-a-name-subparagraph23-a">User Mode Client #1 – Manages Protected Executable Names <a name="subparagraph23"></a></h4>
 
-<p>This user mode client is used to add executable names that are monitored by the driver.
-To achieve that it uses 3 device control codes exposed by the driver: to add, remove and clear executable names from being monitored.
+<p>This user mode client is used to add, remove or clear executable names that are monitored by the driver.
 The name for this client is ProtectExeConfig. I’m pretty sure you can come up with a better name.
 The commands to control it are below:</p>
 
@@ -917,7 +918,7 @@ First, we can see the file being deleted from cmd.exe using the del command:</p>
 
 <p><img src="https://truneski.github.io/post/images/wkp/17.png" alt="Delprotect-Cmd-Protect.png" /></p>
 
-<p>We can see it’s a file it backed up to the Recycle Bin when we try to delete it from cmd.exe:</p>
+<p>We can see the file was backed up to the Recycle Bin when we attempted to delete it from cmd.exe:</p>
 
 <p><img src="https://truneski.github.io/post/images/wkp/18.png" alt="Delprotect-Cmd-Test.png" /></p>
 
@@ -941,7 +942,7 @@ First, we can see the file being deleted from cmd.exe using the del command:</p>
 
 <p>This was the largest chapter and the most time-consuming chapter to complete and grasp.
 However, it was well worth it.
-Extending this driver beyond the exercise handed out by the book an awesome and intense learning experience.</p>
+Extending this driver beyond the exercise handed out by the book was an awesome and intense learning experience.</p>
 
 <h2 id="conclusion-a-name-paragraph3-a">Conclusion <a name="paragraph3"></a></h2>
 
@@ -954,7 +955,7 @@ I seriously couldn’t recommend this book enough.</p>
 
 <h2 id="special-thanks-a-name-paragraph4-a">Special Thanks <a name="paragraph4"></a></h2>
 
-<p>Special thanks to <a href="https://twitter.com/muntopia">Munir Njiru</a> for reviewing my post.</p>
+<p>Special thanks to <a href="https://twitter.com/muntopia">MunirTheAlien</a>, <a href="https://twitter.com/TH3_GOAT_FARM3R">Szymon</a>, <a href="https://twitter.com/TheColonial">OJ</a> and <a href="https://twitter.com/_tweerie_">Tweerie</a> for reviewing my post and <a href="https://twitter.com/matterpreter">Matterpreter</a> for being super helpful and an inspiration.</p>
 
 <h2 id="references-a-name-paragraph5-a">References <a name="paragraph5"></a></h2>
 
