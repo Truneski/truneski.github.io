@@ -6,17 +6,15 @@
 set -e
 # Build the project.
 echo -e "\033[0;32mBuilding the project...\033[0m"
-cd ~/my-website 
+cd ~/my-website
 hugo
 
+
 echo -e "\033[0;32mUpdating Blog Source to Github...\033[0m"
-git add -A
-git commit -m 'Updating Blog Source'
-git push origin master
 hugo -d ~/truneski.github.io/
 
 # Update local source with remote
-cd /home/ubuntu/truneski.github.io
+cd ~/truneski.github.io
 echo -e "\033[0;32mUpdating local copy of project master..\033[0m"
 git pull origin master
 
