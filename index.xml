@@ -6,10 +6,20 @@
     <description>Recent content on Sic Parvis Magna.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 08:02:14 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2020 11:24:20 -0400</lastBuildDate>
     
 	<atom:link href="https://truneski.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pentester Academy Course Review - Global Central Bank (GCB Lab)</title>
+      <link>https://truneski.github.io/post/2020/09/21/pentester-academy-course-review-global-central-bank-gcb-lab/</link>
+      <pubDate>Mon, 21 Sep 2020 11:24:20 -0400</pubDate>
+      
+      <guid>https://truneski.github.io/post/2020/09/21/pentester-academy-course-review-global-central-bank-gcb-lab/</guid>
+      <description>Introduction I recently took advantage of PentesterAcademy’s Discounts due to the global pandemic and completed PentesterAcademy’s Certified Enterprise Security Specialist (PACES) Certification. This course provides an Active Directory lab where students can test out cutting-edge technologies, abuse and bypass many of the recommended defense mechanisms. The course is once again authored by Nikhil Mittal who is a seasoned AD penetration tester and researcher.
+High Level Overview of the Lab The Course This course is made up of a few hours of instructional videos, lab manuals and the challenge lab.</description>
+    </item>
     
     <item>
       <title>Book Review: Windows Kernel Programming and Creating Drivers of Select Exercises</title>
